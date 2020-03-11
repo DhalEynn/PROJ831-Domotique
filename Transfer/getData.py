@@ -45,3 +45,21 @@ def getDate(period,t1,t2):
         for log in logs.find({'Begin Date': {"$gt" : t1 ,"$lt" :t2},'Ending Date': {"$gt" : t1 ,"$lt" :t2}}):
             results.append(log)
         return results
+        
+def getCategory(categ):
+    results = []
+    for r in logs.find({'Category': categ}):
+        results.append(r)
+    return results
+
+def getFunction(funct):
+    results = []
+    for r in logs.find({'Function': funct}):
+        results.append(r)
+    return results
+
+def getCommand(comm):
+    results = []
+    for r in logs.find({'Command': funct}):
+        results.append(r)
+    return results

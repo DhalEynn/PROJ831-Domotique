@@ -57,7 +57,7 @@ def formattingData(filteredLine):
         formattedLine['Ending Date']=int(splittedLine1[-1].split(' TO ')[1][:-2])
         
     else:
-        formattedLine['BeginState']=splittedLine1[3].split(' B')[1:]
+        formattedLine['BeginState']=splittedLine1[3].split(' B')[0][1:]
         formattedLine['BeginDate']=int(splittedLine1[-1].split(';')[0][2:])
         formattedLine['Ending Date']=int(splittedLine1[-1].split(';')[1][:-2])
     return formattedLine
