@@ -1,7 +1,6 @@
 import os
-
-import pymongo
 import copy
+import pymongo
 from pymongo import MongoClient
 
 USERNAME = os.getenv('DB_USERNAME')
@@ -9,11 +8,8 @@ PASSWORD = os.getenv('DB_PASSWORD')
 SERVER = os.getenv('DB_SERVER')
 
 client = MongoClient('mongodb://' + USERNAME + ':' + PASSWORD + '@' + SERVER)
-
 db = client.domo
-
 logs = db.logs
-
 analyse = db.analyse
 
 
@@ -40,14 +36,19 @@ def make_hash(o):
   return hash(tuple(frozenset(sorted(new_o.items()))))
 
 
-
 data = {
-    'string': 'Python and MongoDB',
-    'list': [1, 2, 3],
-    'int': 3
+    'Category': 'switch', 
+    'Id': 7,
+    'Function': 'HEAT',
+    'Action': 'TRY TO RUN EDGE',
+    'Begin State': ['1', 'TRUE'],
+    'Command': 'OFF',
+    'Ending State': ['1', 'OFF'],
+    'Begin Date': 485,
+    'Ending Date': 486
 }
 
 data['_id'] = make_hash(data)
 
 result = logs.insert_one(data)
-print('One logs: {0}'.format(result.inserted_id))
+print(result.inserted_id)
