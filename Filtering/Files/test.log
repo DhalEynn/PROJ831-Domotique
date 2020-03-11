@@ -1,0 +1,9 @@
+2020.03.05 15:30:38.227: FINE [WGraph home_automation.Switch:2 (Light)]: try to run edge: [1 , true]->off->[0 , false] between dates: 16434 to 16435
+2020.03.05 15:30:38.227: FINE [WGraph home_automation.Switch:2 (Light)]: state: [1 , true] between dates: (16372;16434)
+2020.03.05 15:30:38.227: FINE [WGraph home_automation.Light:1 (Light)]: try to run edge: [1 , true]->off->[0 , false] between dates: 16434 to 16434
+2020.03.05 15:30:38.227: FINE [WGraph home_automation.Switch:2 (Light)]: edge runned: [1 , true]->off->[0 , false] between dates: 16434 to 16435
+2020.03.05 15:30:38.227: FINE [WGraph home_automation.Light:1 (Light)]: state: [1 , true] between dates: (16372;16434)
+2020.03.05 15:30:38.227: FINE [DAS] run action off on home_automation.Switch:249515771 at 16434 after 32 time units
+2020.03.05 15:30:44.837: FINE [DA] operate next on  home_automation.Switch:249515771: old time 175 new time 1445
+2020.03.05 15:30:44.837: FINE [DA] operate spendTime on  home_automation.Switch:249515771: old time 1445 new time 1387
+2020.03.05 15:30:44.837: FINE [DAS] reset action on on home_automation.Switch:249515771 at 17873 to 1387 time units
