@@ -1,7 +1,13 @@
+import sys
 import os
 import copy
 import pymongo
 from pymongo import MongoClient
+
+# Import files
+# sys.path.append('../')
+# import Filtering.DataFilter
+
 
 USERNAME = os.getenv('DB_USERNAME')
 PASSWORD = os.getenv('DB_PASSWORD')
@@ -38,13 +44,13 @@ def make_hash(o):
 
 data = {
     'Category': 'switch', 
-    'Id': 7,
+    'Id': 8,
     'Function': 'HEAT',
     'Action': 'TRY TO RUN EDGE',
-    'Begin State': ['1', 'TRUE'],
+    'Begin State': [1, True],
     'Command': 'OFF',
-    'Ending State': ['1', 'OFF'],
-    'Begin Date': 485,
+    'Ending State': [1, False],
+    'Begin Date': 455,
     'Ending Date': 486
 }
 
