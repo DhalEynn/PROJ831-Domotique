@@ -18,7 +18,6 @@ logs = db.logs
 #collection analyse
 analyse = db.analyse
 
-
 def getItem(categ,Id):
     results = []
     for log in logs.find({"Category": categ, "Id" : Id}):
@@ -26,7 +25,10 @@ def getItem(categ,Id):
     return results
 
 def getDate(period,t1,t2):
-    #mc fait bim bam boom
+    '''
+        Si Period = begin(resp. end): Renvoie les events tel que t1 < Begin(resp. Ending) Date < t2
+        Si Perdiod = full: Renvoie les events tel que t1 < Begin Date et End Date < t2
+    '''
     results = []
     if period =='begin':
 
