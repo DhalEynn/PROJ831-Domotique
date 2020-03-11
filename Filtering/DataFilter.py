@@ -1,3 +1,4 @@
+
 def listToString(s):  
     
     # initialize an empty string 
@@ -11,40 +12,55 @@ def listToString(s):
     return str1  
 
 
-def filtering(inputFile, outputFile):
+def LineReadingFromFile(inputFile):
     """Filter the log data, keep only the lines that contain WGRAPH
         in: inputFile textfile that contain the log to filter
         out: outputFile textfile where your filtered logs will be writed
     """
-    log_out = open(outputFile, "w") 
-    line_count=0
+    JsonFormattedData=[] 
     # file browse
-    with open(inputFile, "r") as openfileobject:
+
+    with open(inputFile, 'r') as openfileobject:
         for line in openfileobject:
             UpperLine = line.upper()
+            filteredLine=filtering(UpperLine)
+            if filteredLine != '':
+                JsonFormattedData.append(formattingData(filteredLine))
+    return JsonFormattedData
+    
+
+
+def filtering(UpperLine):
+    if "WGRAPH" in UpperLine:
+        splittedLine = UpperLine.split(' ')
+        filteredLine = listToString(splittedLine[3:])
+        if "DATES" in filteredLine:
+            return filteredLine
+    return ''
             
-            if "WGRAPH" in UpperLine:
-                splittedLine = UpperLine.split(" ")
-                filteredLine = listToString(splittedLine[3:])
-                log_out.write(filteredLine)
-                line_count+=1
-    log_out.write(str(line_count) + " line created") 
-    log_out.close()
 
+def formattingData(filteredLine):
+    
+    splittedLine1 = filteredLine.split(':')
+    state=splittedLine1[3].split('->')
 
-def getDate(inputFile, outputFile):
-    log_out = open(outputFile, "w") 
-    line_count=0
-    with open(inputFile, "r") as openfileobject:
-        for line in openfileobject:
-            UpperLine = line.upper()
-            
-            if "DATES" in UpperLine:
-                log_out.write(UpperLine)
-                line_count+=1
-    log_out.write(str(line_count) + " line created") 
-    log_out.close()
+    formattedLine = {'Category':splittedLine1[0].split('.')[-1],\
+        'Id':int(splittedLine1[1].split(' ')[0]),\
+        'Function':splittedLine1[1].split(' ')[1][1:-2],\
+        'Action':splittedLine1[2][1:]}
+    if len(state)==3:
 
-filtering("Files/test.log", "Files/testClean.log")
-getDate("Files/testClean.log", "Files/testDate.log")
+        formattedLine['Begin State']=state[0][1:]
+        formattedLine['Command']=state[1]
+        formattedLine['Ending State']=state[2].split(' B')[0]
+        formattedLine['Begin Date']=int(splittedLine1[-1].split(' TO ')[0][1:])
+        formattedLine['Ending Date']=int(splittedLine1[-1].split(' TO ')[1][:-2])
+        
+    else:
+        formattedLine['BeginState']=splittedLine1[3].split(' B')[1:]
+        formattedLine['BeginDate']=int(splittedLine1[-1].split(';')[0][2:])
+        formattedLine['Ending Date']=int(splittedLine1[-1].split(';')[1][:-2])
+    return formattedLine
+print(LineReadingFromFile('Files/test.log'))
+
 
