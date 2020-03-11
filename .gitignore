@@ -15,3 +15,4 @@ $RECYCLE.BIN/
 
 *.log
 log.txt
+env.py
