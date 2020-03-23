@@ -1,0 +1,8 @@
+#mapChart {
+  display: inline-flex;
+  align-items: flex-end;
+}
+
+#flexDisplay {
+  display: flex;
+}
