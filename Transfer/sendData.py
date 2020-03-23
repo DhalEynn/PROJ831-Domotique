@@ -36,9 +36,15 @@ def make_hash(o):
 
   return hash(tuple(frozenset(sorted(new_o.items()))))
 
+def send_items(list):
+  for item in list:
+    item['_id']=make_hash(item)
+    result = logs.insert_one(item)
+
+"""
 data = {
-    'Category': 'switch', 
-    'Id': 8,
+    'Category': 'test data', 
+    'Id': 9,
     'Function': 'HEAT',
     'Action': 'TRY TO RUN EDGE',
     'Begin State': [1, True],
@@ -51,4 +57,6 @@ data = {
 data['_id'] = make_hash(data)
 
 result = logs.insert_one(data)
+
 print(result.inserted_id)
+"""
