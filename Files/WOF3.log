@@ -1,2 +1,2 @@
-2020.03.05 15:29:11.141: FINE [WGraph home_automation.Switch:7 (Heat)]: add vertex: [0 , false]
-2020.03.05 15:29:11.142: FINE [WGraph home_automation.Heater:6 (Heat)]: add edge: [0 , 0 , 20 , false , false]->on->[1 , 20 , 20 , true , false]
+2020.03.05 15:29:11.141: FINE [WGraph home_automation.Switch:950 (Heat)]: add vertex: [0 , false]
+2020.03.05 15:29:11.142: FINE [WGraph home_automation.Heater:666 (Heat)]: add edge: [0 , 0 , 20 , false , false]->on->[1 , 20 , 20 , true , false]

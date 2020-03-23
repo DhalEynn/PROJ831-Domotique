@@ -1,22 +1,6 @@
-import os
+
 import copy
-import pymongo
-from pymongo import MongoClient
 
-USERNAME = os.getenv('DB_USERNAME')
-PASSWORD = os.getenv('DB_PASSWORD')
-SERVER = os.getenv('DB_SERVER')
-
-client = MongoClient('mongodb://' + USERNAME + ':' + PASSWORD + '@' + SERVER)
-
-#db domo
-db = client.domo
-
-#collection logs
-logs = db.logs
-
-#collection analyse
-analyse = db.analyse
 
 def make_hash(o):
   """
@@ -36,10 +20,11 @@ def make_hash(o):
 
   return hash(tuple(frozenset(sorted(new_o.items()))))
 
-def send_items(list):
+def send_items(list,collection):
   for item in list:
     item['_id']=make_hash(item)
-    result = logs.insert_one(item)
+    result = collection.insert_one(item)
+    print(result.inserted_id)
 
 """
 data = {
