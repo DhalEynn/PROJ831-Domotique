@@ -1,7 +1,3 @@
-
-import copy
-
-
 def getItem(categ,Id):
     results = []
     for log in logs.find({"Category": categ, "Id" : Id}):
