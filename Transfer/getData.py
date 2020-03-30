@@ -9,7 +9,7 @@ def getItem(logs, categ, Id):
 
 def getDate(logs, period, t1, t2):
     '''
-        Obtenir tous les événements dans un intevalle [t1, t2]
+        Obtenir tous les événements dans un intervalle [t1, t2]
 
         Si Period = begin(resp. end) -> Renvoie les événements tels que t1 < Begin(resp. Ending) Date < t2
         Si Period = full -> Renvoie les événements tels que t1 < Begin Date et End Date < t2
@@ -35,7 +35,7 @@ def getDate(logs, period, t1, t2):
         
 def getCategory(logs, categ):
     '''
-        Obtenir tous les événements des item d'une Catégorie
+        Obtenir tous les événements des items d'une Catégorie
     '''
     results = []
     for r in logs.find({'Category': categ}):
