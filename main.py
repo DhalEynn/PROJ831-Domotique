@@ -9,5 +9,5 @@ import Transfer.connectDB as connectDB
 
 filtered_data = filterData.LineReadingFromFile('Files/WOF3.log')
 
-collection = connectDB.connectToCollection('logs')
-sendData.send_items(filtered_data,collection)
+logs = connectDB.connectToCollection('logs')
+sendData.send_items(filtered_data, logs)
