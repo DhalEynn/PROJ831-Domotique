@@ -59,3 +59,10 @@ def getCommand(logs, comm,actions):
     for r in logs.find({'Command': comm,"Action":{"$in":actions}}):
         results.append(r)
     return results
+
+def getAllExistingCategories(collection):
+    '''
+        Obtenir toutes les categories d'une collection
+    '''
+    results = collection.distinct( "Action" )
+    return results
