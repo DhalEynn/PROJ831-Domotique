@@ -13,3 +13,5 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 $RECYCLE.BIN/
 
+env.py
+*.pyc

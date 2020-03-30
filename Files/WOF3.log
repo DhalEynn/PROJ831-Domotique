@@ -1,0 +1,3 @@
+2020.03.05 17:10:25.412: FINE [WGraph home_automation.Switch:777 (Heat)]: try to run edge: [1 , true]->off->[0 , false] between dates: 1324440 to 1324440
+2020.03.05 17:10:25.412: FINE [WGraph home_automation.Switch:777 (Heat)]: state: [1 , true] between dates: (1323720;1324440)
+2020.03.05 17:10:25.412: FINE [WGraph home_automation.Switch:777 (Heat)]: edge runned: [1 , true]->off->[0 , false] between dates: 1324440 to 1324440
