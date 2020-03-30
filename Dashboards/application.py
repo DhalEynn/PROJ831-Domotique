@@ -9,8 +9,13 @@ def index():
 
 @app.route("/logs")
 def logs():
-    return render_template("index.html")
+    return render_template("logs.html")
 
-@app.route("/analyse")
+"""@app.route("/logs<category>")
+def logs(category=None):
+    graph = categories.temp(category)
+    return render_template("logs.html", graphTemp=graph)"""
+
+@app.route("/analyses")
 def analyse():
-    return render_template("index.html")
+    return render_template("analyses.html")

@@ -1,0 +1,12 @@
+body{
+    background-color: rgb(128, 151, 255);
+}
+  
+#mapChart {
+    display: inline-flex;
+    align-items: flex-end;
+}
+  
+#flexDisplay {
+    display: flex;
+}
