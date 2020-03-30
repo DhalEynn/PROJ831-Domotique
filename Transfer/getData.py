@@ -1,6 +1,6 @@
 def getItem(categ, Id):
     '''
-        Obtenir tous les événements d'un item défini par une Catégorie un ID
+        Obtenir tous les événements d'un item défini par une Catégorie et un ID
     '''
     results = []
     for log in logs.find({"Category": categ, "Id" : Id}):
@@ -9,7 +9,7 @@ def getItem(categ, Id):
 
 def getDate(period, t1, t2):
     '''
-        Obtenir tous les événements dans un intevalle [t1, t2]
+        Obtenir tous les événements dans un intervalle [t1, t2]
 
         Si Period = begin(resp. end) -> Renvoie les events tel que t1 < Begin(resp. Ending) Date < t2
         Si Period = full -> Renvoie les events tel que t1 < Begin Date et End Date < t2
@@ -35,7 +35,7 @@ def getDate(period, t1, t2):
         
 def getCategory(categ):
     '''
-        Obtenir tous les événements des item d'une Catégorie
+        Obtenir tous les événements des items d'une Catégorie
     '''
     results = []
     for r in logs.find({'Category': categ}):
@@ -44,7 +44,7 @@ def getCategory(categ):
 
 def getFunction(funct):
     '''
-        Obtenir tous les événements qui effectue une Function
+        Obtenir tous les événements qui effectuent une Function
     '''
     results = []
     for r in logs.find({'Function': funct}):
@@ -53,7 +53,7 @@ def getFunction(funct):
 
 def getCommand(comm):
     '''
-        Obtenir tous les événements qui effectue une Commande
+        Obtenir tous les événements qui effectuent une Commande
     '''
     results = []
     for r in logs.find({'Command': comm}):
