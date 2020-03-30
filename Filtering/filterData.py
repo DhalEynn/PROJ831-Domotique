@@ -78,10 +78,5 @@ def formattingData(filteredLine):
 
 def testLineReadingFromFile():
     value = LineReadingFromFile('Files/test.log')
-    expectedValue = 
-...
-[{'Category': 'SWITCH', 'Id': 2, 'Function': 'LIGHT', 'Action': 'TRY TO RUN EDGE', 'Begin State': '[1 , TRUE]', 'Command': 'OFF', 'Ending State': '[0 , FALSE]', 'Begin Date': 16434, 'Ending Date': 16435}, {'Category': 'SWITCH', 'Id': 2, 'Function': 'LIGHT', 'Action': 'STATE', 'Begin State': '[1 , TRUE]', 'Begin Date': 16372, 'Ending Date': 16434}, {'Category': 'LIGHT', 'Id': 1, 'Function': 'LIGHT', 'Action': 'TRY TO RUN EDGE', 'Begin State': '[1 , TRUE]', 'Command': 'OFF', 'Ending State': '[0 , FALSE]', 'Begin Date': 16434, 'Ending Date': 16434}, {'Category': 'SWITCH', 'Id': 2, 'Function': 'LIGHT', 'Action': 'EDGE RUNNED', 'Begin State': '[1 , TRUE]', 'Command': 'OFF', 'Ending State': '[0 , FALSE]', 'Begin Date': 16434, 'Ending Date': 16435}, {'Category': 'LIGHT', 'Id': 1, 'Function': 'LIGHT', 'Action': 'STATE', 'Begin State': '[1 , TRUE]', 'Begin Date': 16372, 'Ending Date': 16434}]
-
-print(LineReadingFromFile('Files/test.log'))
-
-
+    expectedValue = [{'Category': 'SWITCH', 'Id': 2, 'Function': 'LIGHT', 'Action': 'TRY TO RUN EDGE', 'Begin State': '[1 , TRUE]', 'Command': 'OFF', 'Ending State': '[0 , FALSE]', 'Begin Date': 16434, 'Ending Date': 16435}, {'Category': 'SWITCH', 'Id': 2, 'Function': 'LIGHT', 'Action': 'STATE', 'Begin State': '[1 , TRUE]', 'Begin Date': 16372, 'Ending Date': 16434}, {'Category': 'LIGHT', 'Id': 1, 'Function': 'LIGHT', 'Action': 'TRY TO RUN EDGE', 'Begin State': '[1 , TRUE]', 'Command': 'OFF', 'Ending State': '[0 , FALSE]', 'Begin Date': 16434, 'Ending Date': 16434}, {'Category': 'SWITCH', 'Id': 2, 'Function': 'LIGHT', 'Action': 'EDGE RUNNED', 'Begin State': '[1 , TRUE]', 'Command': 'OFF', 'Ending State': '[0 , FALSE]', 'Begin Date': 16434, 'Ending Date': 16435}, {'Category': 'LIGHT', 'Id': 1, 'Function': 'LIGHT', 'Action': 'STATE', 'Begin State': '[1 , TRUE]', 'Begin Date': 16372, 'Ending Date': 16434}]
+    return value == expectedValue
