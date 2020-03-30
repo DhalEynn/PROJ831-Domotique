@@ -66,3 +66,10 @@ def getAllExistingCategories(collection):
     '''
     results = collection.distinct( "Action" )
     return results
+
+def getAllIdFromCategory(collection,categ):
+    '''
+        Obtenir toutes les categories d'une collection
+    '''
+    results = collection.distinct( "Id",{ "Action": categ })
+    return results
