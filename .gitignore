@@ -15,3 +15,5 @@ $RECYCLE.BIN/
 
 env.py
 *.pyc
+*.vscode
+*__pycache__
