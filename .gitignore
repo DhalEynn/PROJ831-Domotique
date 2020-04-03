@@ -8,10 +8,12 @@
 *.tmp.*
 *.sublime-project
 *.sublime-workspace
+*.pyc
+*.vscode
+*__pycache__
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
 $RECYCLE.BIN/
 
 env.py
-*.pyc
