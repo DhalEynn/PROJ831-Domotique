@@ -6,6 +6,7 @@ import Transfer.getData as getData
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
+import seaborn as sns
 
 def lastObjectFreq(category,ID, time):
     logs = connectDB.connectToCollection('logs2')
@@ -48,24 +49,25 @@ def graphLastObjectFreq(dict_frequency, nb_actions):
     fig = px.bar(x=list_object, y=list_objet_frequency)
     fig.show()
 
-def action_to_list(category,ID):
-    logs = connectDB.connectToCollection('logs2')
+def action_to_list(category,ID, maxTime):
+    logs = connectDB.connectToCollection('logs')
     list_action = getData.getItem(logs, category, ID, ['EDGE RUNNED'])
-    x = [0]
-    y = [0]
+    temps = [0]
+    etat = [0]
     i = 0
     for action in list_action:
-
-        while len(x)*10< action['Begin Date']:
-            if x[-1] < 10000:
+        if temps[-1] > maxTime:
+            break
+        while len(temps)< action['Begin Date']:
+            if temps[-1] > maxTime:
                 break
-            x += [i]
-            i += 10
-            y.append(y[-1])
-        x += [i]
-        i += 10
-        y += [int(action['Ending State'][1])]
-    return [x,y]
+            temps += [i]
+            i += 1
+            etat.append(etat[-1])
+        temps += [i]
+        i += 1
+        etat += [int(action['Ending State'][1])]
+    return [temps,etat]
 
 def list_to_graph(list_action):         
     fig = go.Figure()
@@ -73,4 +75,90 @@ def list_to_graph(list_action):
                     mode='lines+markers',
                     name='lines+markers'))
     fig.show()
+
+def prevision(time, list_etat, duree):
+    periode_off = frequence(time,list_etat, -1)
+    periode_on = frequence(time,list_etat, 1)
+    i = 1
+    while i<len(list_etat):
+        if list_etat[i] != list_etat[i-1]:
+            last_transition = list_etat[i] - list_etat[i-1]
+            last_time = time[i]
+        i += 1
+    next_etat=etat[i]
+    if last_transition == 1:
+        time_to_transition = periode_on - (time[i] - last_time)
+    else:
+        time_to_transition = periode_on - (time[i] - last_time)  
+    i=0 
+    while i < duree:
+        time += [time[-1] + 1]
+        etat += next_etat
+        time_to_transition += -1
+        if time_to_transition <= 0:
+            if next_etat == 1:
+                next_etat = 0
+                time_to_transition = periode_off
+            if next_etat == 0:
+                next_etat = 1
+                time_to_transition = periode_on
+        i += 1
+    return (time, list_etat)
+    
+    
+    
+    def frequence(time,list_etat, transition):
+        i = 1
+        time_debut = 0
+        time_fin = 0
+        nb = -1
+        somme = 0
+        while i < len(list_etat):
+            if list_etat[i] != list_etat[i-1]:
+                if  transition == list_etat[i] - list_etat[i-1]:
+                    time_debut = time[i]
+                else:
+                    time_fin = time[i]
+                    somme += (time_fin - time_debut)
+                    nb += 1
+            i += 1
+        return(somme/nb) 
+
+
+
+
+
+
+
+def correlation():
+    logs = connectDB.connectToCollection('logs')
+    categories = getData.getAllExistingCategories(logs)
+    data ={}
+    df = pd.DataFrame(data)
+    maxSize = 240000
+    for category in categories:
+        ids = getData.getAllIdFromCategory(logs,category)
+        for id_c in ids:
+            a =action_to_list(category,int(id_c),float('inf'))[1]
+
+            df[category+ ' ' + str(id_c)]= a[0:maxSize]
+    print(df)
+    corr = df.corr()
+    ax = sns.heatmap(
+        corr, 
+        vmin=-1, vmax=1, center=0,
+        cmap=sns.diverging_palette(20, 220, n=200),
+        square=True
+    )
+    ax.set_xticklabels(
+        ax.get_xticklabels(),
+        rotation=45,
+        horizontalalignment='right'
+    );
+
+
+f1 = action_to_list('ROLLINGSHUTTER',5, 10000)[1]
+f2 = action_to_list('HEATER',6,10000)[1]
+
+print(correlation())
 

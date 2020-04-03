@@ -64,12 +64,12 @@ def getAllExistingCategories(collection):
     '''
         Obtenir toutes les categories d'une collection
     '''
-    results = collection.distinct( "Action" )
+    results = collection.distinct( "Category" )
     return results
 
 def getAllIdFromCategory(collection,categ):
     '''
         Obtenir toutes les categories d'une collection
     '''
-    results = collection.distinct( "Id",{ "Action": categ })
+    results = collection.distinct( "Id",{ "Category": categ })
     return results
