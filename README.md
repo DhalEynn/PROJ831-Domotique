@@ -30,9 +30,10 @@ La seule contrainte que vous ayez, sauf si le module en impose d'autres, est d'u
 
 
 2. Add the application as env var:
-  * (Windows PowerShell): `$env:FLASK_APP = "Dashboard/application.py`
-  * (Linux): `export FLASK_APP=Dashboard/application.py`
+  * (Windows PowerShell): `$env:FLASK_APP = "application.py`
+  * (Linux): `export FLASK_APP=application.py`
 
+3. cd To /Dashboards
 
-3. Run the server:
+4. Run the server:
 `flask run`
