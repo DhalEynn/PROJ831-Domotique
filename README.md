@@ -13,3 +13,17 @@ Les log, vous sont données sous forme de fichier, mais il peuvent accessible vi
 Comme vous êtes nombreux, il faudra prévoir dans le projet, en plus de la gestion de projet, une partie analyse (recherche de modèle de comportement de chaque graphe, corrélation entre les comportements, prédiction de comportement, écart au modèle...), une partie visualisation afin d'avoir une vue conviviale, originale, mais surtout pertinente des données de log et d'analyse, et enfin la partie infrastructure qui doit faire le lien entre l'acquisition des données, l'analyse et la visualisation.
 
 La seule contrainte que vous ayez, sauf si le module en impose d'autres, est d'utiliser des langages/bibliothèques/applications fiables et pérennes.
+
+
+
+## Instructions :
+Start web server:
+
+1. Install Flask
+`pip install Flask`
+
+2. Add the application as env var:
+(Windows PowerShell): `$env:FLASK_APP = "Dashboard/application.py"
+
+3. Run the server:
+`flask run`
