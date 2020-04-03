@@ -17,18 +17,16 @@ def index():
 @app.route("/logs")
 def logs():
     logs = connectDB.connectToCollection("logs")
+
     categs = getData.getAllExistingCategories(logs)
     items = {}
     for categ in categs:
         items[categ] = getData.getAllIdFromCategory(logs, categ)
-    print(items)
     nb_line = max(len(value) for key, value in items.items())
-    return render_template("logs.html", items=items, nb_line=nb_line)
 
-"""@app.route("/logs<category>")
-def logs(category=None):
-    graph = categories.temp(category)
-    return render_template("logs.html", graphTemp=graph)"""
+    actions = getData.getAllExistingActions(logs)
+    events = getData.getItem(logs, "SWITCH", 3 , actions)
+    return render_template("logs.html", items=items, nb_line=nb_line, events=events)
 
 @app.route("/analyses")
 def analyse():

@@ -3,7 +3,7 @@ def getItem(logs, categ, Id,actions):
         Obtenir tous les événements d'un item défini par une Catégorie, un ID et une liste d'action
     '''
     results = []
-    for log in logs.find({"Category": categ, "Id" : Id,  "Action":{"$in":actions}}):
+    for log in logs.find({"Category": categ, "Id" : Id,  "Action":{"$in":actions}}).limit(100):
         results.append(log)
     return results
 
@@ -72,4 +72,11 @@ def getAllIdFromCategory(collection,categ):
         Obtenir tous les Id appartenant à une category
     '''
     results = collection.distinct( "Id",{ "Category": categ })
+    return results
+
+def getAllExistingActions(collection):
+    '''
+        Obtenir toutes les actions d'une collection
+    '''
+    results = collection.distinct( "Action" )
     return results

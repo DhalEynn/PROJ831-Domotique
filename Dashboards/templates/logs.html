@@ -9,16 +9,10 @@
 	</head>
 	<body>
 		<div>
-			<center>
-				<h2>Projet domotique - Logs</h2>
-				<h3>{Category}</h3>
-			</center>
+			<h2>Projet domotique - Logs</h2>
 		</div>
 		<div>
-			{DASHBOARD}
-	</div>
-		<div>
-			<table>
+			<table id="items">
                 <tr>
                     {% for key, value in items.items() %}
                         <th>
@@ -35,6 +29,34 @@
                     {% endfor %}
                 </tr>
                 {% endfor %}     
+			</table>
+		</div>
+		<div>
+			<table id=events>
+				<tr>
+					<th> Category </th>
+					<th> Id </th>
+					<th> Action </th>
+					<th> Function </th>
+					<th> Command </th>
+					<th> Begin Date </th>
+					<th> Begin State </th>
+					<th> Ending Date </th>
+					<th> Ending State </th>
+				</tr>
+				{% for event in events %}
+				<tr>
+					<td> {{ event['Category'] }} </td>
+					<td> {{ event['Id'] }} </td>
+					<td> {{ event['Action'] }} </td>
+					<td> {{ event['Function'] }} </td>
+					<td> {{ event['Command'] }} </td>
+					<td> {{ event['Begin Date'] }} </td>
+					<td> {{ event['Begin State'] }} </td>
+					<td> {{ event['Ending Date'] }} </td>
+					<td> {{ event['Ending State'] }} </td>
+				</tr>
+				{% endfor %}
 			</table>
 		</div>
 	</body>
