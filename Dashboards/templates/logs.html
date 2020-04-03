@@ -18,8 +18,18 @@
       {DASHBOARD}
   </div>
     <div>
-      {DESCRIPTION ?}
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, et fugiat itaque ipsum numquam sunt rem laudantium fugit accusantium molestiae, quam iste voluptates tempora reiciendis id, corrupti odit veritatis dignissimos.
+      <table>
+        {% for key, value in items.items() %}
+        <tr>
+          <th>{{key}}</th>
+        </tr>
+        {% for i in range(nb_line) %}
+        <tr>
+          <td>{{value[i]}}</td>
+        </tr>
+        {% endfor %}
+        {% endfor %}
+      </table>
     </div>
   </body>
 </html>

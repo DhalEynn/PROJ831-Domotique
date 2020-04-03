@@ -71,5 +71,5 @@ def getAllIdFromCategory(collection,categ):
     '''
         Obtenir tous les Id appartenant à une category
     '''
-    results = collection.distinct( "Id",{ "Action": categ })
+    results = collection.distinct( "Id",{ "Category": categ })
     return results

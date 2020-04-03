@@ -1,3 +1,10 @@
+import sys
+sys.path.append('../')
+
+import env
+import Transfer.connectDB as connectDB
+import Transfer.getData as getData
+
 from flask import Flask
 from flask import render_template
 
@@ -9,7 +16,14 @@ def index():
 
 @app.route("/logs")
 def logs():
-    return render_template("logs.html")
+    logs = connectDB.connectToCollection("logs")
+    categs = getData.getAllExistingCategories(logs)
+    items = {}
+    for categ in categs:
+        items[categ] = getData.getAllIdFromCategory(logs, categ)
+    print(items)
+    nb_line = max(len(value) for key, value in items.items())
+    return render_template("logs.html", items=items, nb_line=nb_line)
 
 """@app.route("/logs<category>")
 def logs(category=None):
