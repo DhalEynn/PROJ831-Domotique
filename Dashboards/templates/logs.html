@@ -14,54 +14,63 @@
 		</div>
 		<div>
 			<table id="items">
-                <tr>
-                    {% for key, value in items.items() %}
-                        <th>
-                            {{key}}
-                        </th>
-                    {% endfor %}
-                </tr>
-                {% for i in range(nb_line) %}
-                <tr>
-                    {% for key, value in items.items() %}
-                        <td>
-                            {{value[i]}}
-                        </td> 
-                    {% endfor %}
-                </tr>
-                {% endfor %}     
+				<thead>
+					<tr>
+						{% for key, value in items.items() %}
+							<th>
+								{{key}}
+							</th>
+						{% endfor %}
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in range(nb_line) %}
+					<tr>
+						{% for key, value in items.items() %}
+							<td>
+								{{value[i]}}
+							</td> 
+						{% endfor %}
+					</tr>
+					{% endfor %}
+				</tbody>
 			</table>
 		</div>
 		<div>
 			<table id=events >
-				<tr>
-					<th> Category </th>
-					<th> Id </th>
-					<th> Action </th>
-					<th> Function </th>
-					<th> Command </th>
-					<th> Begin Date </th>
-					<th> Begin State </th>
-					<th> Ending Date </th>
-					<th> Ending State </th>
-				</tr>
-				{% for event in events %}
-				<tr>
-					<td> {{ event['Category'] }} </td>
-					<td> {{ event['Id'] }} </td>
-					<td> {{ event['Action'] }} </td>
-					<td> {{ event['Function'] }} </td>
-					<td> {{ event['Command'] }} </td>
-					<td> {{ event['Begin Date'] }} </td>
-					<td> {{ event['Begin State'] }} </td>
-					<td> {{ event['Ending Date'] }} </td>
-					<td> {{ event['Ending State'] }} </td>
-				</tr>
-				{% endfor %}
+				<thead>
+					<tr>
+						<th> Category </th>
+						<th> Id </th>
+						<th> Action </th>
+						<th> Function </th>
+						<th> Command </th>
+						<th> Begin Date </th>
+						<th> Begin State </th>
+						<th> Ending Date </th>
+						<th> Ending State </th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for event in events %}
+					<tr>
+						<td> {{ event['Category'] }} </td>
+						<td> {{ event['Id'] }} </td>
+						<td> {{ event['Action'] }} </td>
+						<td> {{ event['Function'] }} </td>
+						<td> {{ event['Command'] }} </td>
+						<td> {{ event['Begin Date'] }} </td>
+						<td> {{ event['Begin State'] }} </td>
+						<td> {{ event['Ending Date'] }} </td>
+						<td> {{ event['Ending State'] }} </td>
+					</tr>
+					{% endfor %}
+				</tbody>
 			</table>
 		</div>
-		<script type=text/javascript src="../static/js/lib/jquery.dataTables.min.js"></script>
+		
 		<script type=text/javascript src="../static/js/lib/jquery.js"></script>
+		<script type=text/javascript src="../static/js/lib/jquery.dataTables.min.js"></script>
 		<script type=text/javascript src="../static/js/logs.js"></script>
 	</body>
 </html>
