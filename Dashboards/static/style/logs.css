@@ -41,3 +41,19 @@ table tr:hover {
 #events {
     width: 80%;
 }
+
+#events_previous {
+    background-color: rgb(28, 134, 255);
+}
+
+#events_next {
+    background-color: red;
+}
+
+.paginate_button {
+    background-color: white;
+}
+
+.current {
+    background-color: grey;
+}
