@@ -2,8 +2,7 @@ import os
 import pymongo
 from pymongo import MongoClient
 
-
-def connectToCollection(collectionName):
+def connectToCollection(collection):
     USERNAME = os.getenv('DB_USERNAME')
     PASSWORD = os.getenv('DB_PASSWORD')
     SERVER = os.getenv('DB_SERVER')
@@ -12,21 +11,8 @@ def connectToCollection(collectionName):
     #db domo
     db = client.domo
 
-    
-    if (collectionName =='logs'):
-        #collection logs
-        logs = db.logs
-        return logs
-    
-    elif (collectionName =='analyse'):
-        #collection analyse
-        analyse = db.analyse
-        return analyse
-
-    elif (collectionName =='logs2'):
-        #collection analyse
-        logs2 = db.logs2
-        return logs2
+    if collection in db.collection_names():
+        return db[collection]
 
     else:
-        print('nope')
+        print('Unknown collection')
