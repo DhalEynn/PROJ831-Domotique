@@ -25,15 +25,18 @@ La seule contrainte que vous ayez, sauf si le module en impose d'autres, est d'u
 ## Instructions :
 **To start the web server :**
 
+In a command terminal :
+
 1. Install Flask
 `pip install Flask`
 
+2. cd to /DashBoards
 
-2. Add the application as env var:
-  * (Windows PowerShell): `$env:FLASK_APP = "application.py`
+3. Add the application as env var:
+  * (Windows PowerShell): `$env:FLASK_APP = "application.py"`
+  * (Windows CMD) : `set FLASK_APP=application.py`
   * (Linux): `export FLASK_APP=application.py`
 
-3. cd to /DashBoards
 
 4. Run the server:
 `flask run`
