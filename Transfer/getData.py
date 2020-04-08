@@ -86,9 +86,13 @@ def getAllExistingActions(collection):
     results = collection.distinct( "Action" )
     return results
 
-def getAll(collection):
+def getAll(collection,limit=None):
     '''
         Obtenir tout d'une collection avec un tri sur Ending Date en decroissant
+        possibilité d'avoir une quantité limité de résultats
     '''
-    results = collection.find({}).sort({'Ending Date' : -1})
+    if limit==None:
+        results = collection.find({}).sort({'Ending Date' : -1})
+    else:
+        results = collection.find({}).sort({'Ending Date' : -1}).limit(limit)
     return results
