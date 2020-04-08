@@ -28,3 +28,43 @@ def arimaPrediction():
     pyplot.plot(test)
     pyplot.plot(predictions, color='red')
     pyplot.show()
+
+def prevision(time, list_etat, duree):
+    periode_off = an.frequence(time,list_etat, -1)
+    periode_on = an.frequence(time,list_etat, 1)
+    i = 1
+    while i<len(list_etat):
+        if list_etat[i] != list_etat[i-1]:
+            last_transition = list_etat[i] - list_etat[i-1]
+            last_time = time[i]
+        i += 1
+    next_etat=list_etat[-1]
+    if last_transition == 1:
+        time_to_transition = periode_on - (time[-1] - last_time)
+    else:
+        time_to_transition = periode_off - (time[-1] - last_time) 
+    i=0 
+    while i < duree:
+        time += [time[-1] + 1]
+        list_etat += [next_etat]
+        time_to_transition = time_to_transition -1
+        if time_to_transition <= 0:
+            if next_etat == 1:
+                next_etat = 0
+                time_to_transition = periode_off
+            elif next_etat == 0:
+                next_etat = 1
+                time_to_transition = periode_on
+        i += 1
+    return ([time, list_etat])
+    liste_action = action_to_list('LIGHT',1, 5000)
+
+
+liste_action = an.action_to_list('LIGHT',1, 5000)
+an.list_to_graph(liste_action)
+predictions = prevision(liste_action[0], liste_action[1], 10000)
+an.list_to_graph(predictions)
+
+liste_action = an.action_to_list('LIGHT',1, 15000)
+an.list_to_graph(liste_action)
+mean_squared_error(liste_action, predictions)
