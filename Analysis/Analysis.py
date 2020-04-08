@@ -52,22 +52,22 @@ def graphLastObjectFreq(dict_frequency, nb_actions):
 def action_to_list(category,ID, maxTime):
     logs = connectDB.connectToCollection('logs')
     list_action = getData.getItem(logs, category, ID, ['EDGE RUNNED'])
-    temps = [0]
+    time = [0]
     etat = [0]
     i = 0
     for action in list_action:
-        if temps[-1] > maxTime:
+        if time[-1] > maxTime:
             break
-        while len(temps)< action['Begin Date']:
-            if temps[-1] > maxTime:
+        while len(time)< action['Begin Date']:
+            if time[-1] > maxTime:
                 break
-            temps += [i]
+            time += [i]
             i += 1
             etat.append(etat[-1])
-        temps += [i]
+        time += [i]
         i += 1
         etat += [int(action['Ending State'][1])]
-    return [temps,etat]
+    return [time,etat]
 
 def list_to_graph(list_action):         
     fig = go.Figure()
@@ -85,16 +85,16 @@ def prevision(time, list_etat, duree):
             last_transition = list_etat[i] - list_etat[i-1]
             last_time = time[i]
         i += 1
-    next_etat=etat[i]
+    next_etat=list_etat[-1]
     if last_transition == 1:
-        time_to_transition = periode_on - (time[i] - last_time)
+        time_to_transition = periode_on - (time[-1] - last_time)
     else:
-        time_to_transition = periode_on - (time[i] - last_time)  
+        time_to_transition = periode_off - (time[-1] - last_time)  
     i=0 
     while i < duree:
         time += [time[-1] + 1]
-        etat += next_etat
-        time_to_transition += -1
+        list_etat += [next_etat]
+        time_to_transition = time_to_transition -1
         if time_to_transition <= 0:
             if next_etat == 1:
                 next_etat = 0
@@ -103,27 +103,56 @@ def prevision(time, list_etat, duree):
                 next_etat = 1
                 time_to_transition = periode_on
         i += 1
-    return (time, list_etat)
+    return ([time, list_etat])
     
     
     
-    def frequence(time,list_etat, transition):
-        i = 1
-        time_debut = 0
-        time_fin = 0
-        nb = -1
-        somme = 0
-        while i < len(list_etat):
-            if list_etat[i] != list_etat[i-1]:
-                if  transition == list_etat[i] - list_etat[i-1]:
-                    time_debut = time[i]
-                else:
-                    time_fin = time[i]
-                    somme += (time_fin - time_debut)
-                    nb += 1
-            i += 1
-        return(somme/nb) 
+def frequence(time,list_etat, transition):
+    i = 1
+    time_debut = 0
+    time_fin = 0
+    nb = 0
+    somme = 0
+    while i < len(list_etat):
+        if list_etat[i] != list_etat[i-1]:
+            if  transition == list_etat[i] - list_etat[i-1]:
+                time_debut = time[i]
+                #print("time_debut = ", time_debut)
+            else:
+                time_fin = time[i]
+                #print("time_fin = ", time_fin)
+                somme += (time_fin - time_debut)
+                nb += 1
+        i += 1
+    #print(somme/nb)
+    return(somme/nb) 
 
+
+def period(list_etat):
+    onPeriodList = [] 
+    offPeriodList = []
+    onPeriod = 0
+    offPeriod = 0
+    if list_etat[0] == 1:
+        onPeriod = 1
+    else :
+        offPeriod = 1
+    for i in range (len(list_etat)):
+        while i < len(list_etat):
+            if list_etat[i] == 0:
+                if list_etat[i] != list_etat[i-1]:
+                    onPeriodList.append(onPeriod)
+                    onPeriod = 0
+
+                else:
+                    onPeriod+=1
+
+            else:
+                if list_etat[i] != list_etat[i-1]:
+                    offPeriodList.append(offPeriod)
+                    offPeriod = 0
+                else:
+                    offPeriod+=1
 
 
 
@@ -142,7 +171,7 @@ def correlation():
             a =action_to_list(category,int(id_c),float('inf'))[1]
 
             df[category+ ' ' + str(id_c)]= a[0:maxSize]
-    print(df)
+        print(df)
     corr = df.corr()
     ax = sns.heatmap(
         corr, 
@@ -157,8 +186,15 @@ def correlation():
     );
 
 
-f1 = action_to_list('ROLLINGSHUTTER',5, 10000)[1]
-f2 = action_to_list('HEATER',6,10000)[1]
+#f1 = action_to_list('ROLLINGSHUTTER',5, 10000)[1]
+#f2 = action_to_list('HEATER',6,10000)[1]
 
-print(correlation())
+#print(correlation())
+liste_action = action_to_list('ROLLINGSHUTTER',5, 10000)
+#frequence(liste_action[0], liste_action[1], 1)
+#list_to_graph(liste_action)
+list_to_graph(prevision(liste_action[0], liste_action[1], 30000))
+
+liste_action = action_to_list('ROLLINGSHUTTER',5, 30000)
+list_to_graph(liste_action)
 
