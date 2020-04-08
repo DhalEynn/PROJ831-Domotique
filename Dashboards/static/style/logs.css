@@ -12,8 +12,23 @@ body{
 .select-all-item {
     width: 100%;
     padding: 0; 
+    margin:0;
     border: 0;
     background-color: grey;
+}
+
+.select-category {
+    width: 100%;
+    padding: 0; 
+    margin:0;
+    border: 0;
+    background-color: black;
+
+}
+
+#form-all {
+    padding: 0; 
+    margin:0;
 }
 
 table {
@@ -39,7 +54,12 @@ table th{
 }
 
 #items td {
-    padding: 0;
+    padding: 0px;
+}
+*
+#items tr:last-of-type
+{
+    background-color: grey;
 }
 
 
