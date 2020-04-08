@@ -32,16 +32,20 @@ def logs():
     if request.method == 'POST':
         req = request.form['item']
         # all
+
         if req == 'all':
-            events = getData.getAll(logs, 100)
+            events = getData.getAll(logs, 100,True)
         # item
         else: 
             item = req.split()
-            item[1] = int(item[1])
-            events = getData.getItem(logs, item[0], item[1] , actions, 100)
+            if len(item)==1:
+                events = getData.getCategory(logs, item[0],actions,100,True)
+            else:
+                item[1] = int(item[1])
+                events = getData.getItem(logs, item[0], item[1] , actions, 100,True)
     # default page
     else:
-        events = getData.getAll(logs, 100)
+        events = getData.getAll(logs, 100,True)
     return render_template("logs.html", items=items, nb_line=nb_line, events=events)
 
 @app.route("/analyses")

@@ -1,19 +1,22 @@
 import pymongo
-def getItem(logs, categ, Id,actions,limit=None):
+def getItem(logs, categ, Id,actions,limit=None,sort=False):
     '''
         Obtenir tous les événements d'un item défini par une Catégorie, un ID et une liste d'action
         si limit est fixé retourne les limi premiers éléments
     '''
     results = []
-    if limit ==None:
-        req = logs.find({"Category": categ, "Id" : Id,  "Action":{"$in":actions}})
-    else:
-        req = logs.find({"Category": categ, "Id" : Id,  "Action":{"$in":actions}}).limit(limit)
+    req = logs.find({"Category": categ, "Id" : Id,  "Action":{"$in":actions}})
+
+    if limit !=None:
+        req = req.limit(limit)
+    if sort==True:
+        req = req.sort([('Ending Date',pymongo.DESCENDING)])
+
     for log in req:
         results.append(log)
     return results
 
-def getDate(logs, period, t1, t2,actions):
+def getDate(logs, period, t1, t2,actions,limit=None):
     '''
         Obtenir tous les événements dans un intervalle [t1, t2] et en fonction d'une liste d'actions
 
@@ -21,48 +24,76 @@ def getDate(logs, period, t1, t2,actions):
         Si Period = full -> Renvoie les événements tels que t1 < Begin Date et End Date < t2
     '''
     results = []
-    if period =='begin':
 
-        for log in logs.find({'Begin Date': {"$gt" : t1 ,"$lt" :t2},"Action":{"$in":actions}}): 
+    if period =='begin':
+        req = logs.find({'Begin Date': {"$gt" : t1 ,"$lt" :t2},"Action":{"$in":actions}})
+        if limit !=None:
+            req = req.limit(limit)
+        for log in req: 
             results.append(log)
         return results
     
     elif period =='end':
-
-        for log in logs.find({'Ending Date': {"$gt" : t1 ,"$lt" :t2},"Action":{"$in":actions}}):
+        req = logs.find({'Ending Date': {"$gt" : t1 ,"$lt" :t2},"Action":{"$in":actions}})
+        if limit !=None:
+            req = req.limit(limit)
+        for log in req:
             results.append(log)
         return results
     
     elif period =='full':
-
-        for log in logs.find({'Begin Date': {"$gt" : t1 ,"$lt" :t2},'Ending Date': {"$gt" : t1 ,"$lt" :t2},"Action":{"$in":actions}}):
+        req = logs.find({'Begin Date': {"$gt" : t1 ,"$lt" :t2},'Ending Date': {"$gt" : t1 ,"$lt" :t2},"Action":{"$in":actions}})
+        if limit !=None:
+            req = req.limit(limit)
+        for log in req:
             results.append(log)
         return results
         
-def getCategory(logs, categ,actions):
+def getCategory(logs, categ,actions,limit=None,sort=False):
     '''
         Obtenir tous les événements des items d'une Catégorie et en fonction d'une liste d'actions
     '''
     results = []
-    for r in logs.find({'Category': categ,"Action":{"$in":actions}}):
+    req = logs.find({'Category': categ,"Action":{"$in":actions}})
+
+    if limit !=None:
+        req = req.limit(limit)
+    if sort==True:
+        req = req.sort([('Ending Date',pymongo.DESCENDING)])
+
+    for r in req:
         results.append(r)
     return results
 
-def getFunction(logs, funct,actions):
+def getFunction(logs, funct,actions,limit=None,sort=False):
     '''
         Obtenir tous les événements qui effectuent une Function et en fonction d'une liste d'actions
     '''
     results = []
-    for r in logs.find({'Function': funct,"Action":{"$in":actions}}):
+    req = logs.find({'Function': funct,"Action":{"$in":actions}})
+
+    if limit !=None:
+        req = req.limit(limit)
+    if sort==True:
+        req = req.sort([('Ending Date',pymongo.DESCENDING)])
+
+    for r in req:
         results.append(r)
     return results
 
-def getCommand(logs, comm,actions):
+def getCommand(logs, comm,actions,limit=None,sort=False):
     '''
         Obtenir tous les événements qui effectuent une Commande et en fonction d'une liste d'actions
     '''
     results = []
-    for r in logs.find({'Command': comm,"Action":{"$in":actions}}):
+    req =logs.find({'Command': comm,"Action":{"$in":actions}})
+
+    if limit !=None:
+        req = req.limit(limit)
+    if sort==True:
+        req = req.sort([('Ending Date',pymongo.DESCENDING)])
+
+    for r in req:
         results.append(r)
     return results
 
@@ -87,12 +118,15 @@ def getAllExistingActions(collection):
     results = collection.distinct( "Action" )
     return results
 
-def getAll(collection,limit=None):
+def getAll(collection,limit=None,sort=False):
     '''
         Obtenir tout d'une collection avec un tri sur Ending Date en decroissant
     '''
-    if limit==None:
-        results = collection.find({}).sort([("Ending Date", pymongo.DESCENDING)])
-    else:
-        results = collection.find({}).sort([("Ending Date", pymongo.DESCENDING)]).limit(limit)
+    req = collection.find({})
+    if limit !=None:
+        req = req.limit(limit)
+    if sort==True:
+        req = req.sort([('Ending Date',pymongo.DESCENDING)])
+
+    results = req
     return results

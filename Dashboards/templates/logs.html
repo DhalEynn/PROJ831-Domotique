@@ -18,7 +18,7 @@
 					<tr>
 						{% for key, value in items.items() %}
 							<th>
-								{{key}}
+								<form id="form-all" method='POST'><button type=submit name='item' value='{{key}}' class="select-category">{{key}}</button></form>
 							</th>
 						{% endfor %}
 					</tr>
@@ -32,13 +32,17 @@
 									<form method='POST'><button type=submit name='item' value='{{key}} {{value[i]}}' class="select-item">{{value[i]}}</button></form>
 								{% endif %}	
 							</td> 
+							
 						{% endfor %}
+						
 					</tr>
 					{% endfor %}
-						<td colspan=4>
-							<form method='POST'><button type=submit name='item' value='all' class="select-all-item">Tout</button></form>
-						</td>
 
+					<tr>
+						<td colspan=4>
+							<form id="form-all" method='POST'><button type=submit name='item' value='all' class="select-all-item">Tout</button></form>
+						</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
