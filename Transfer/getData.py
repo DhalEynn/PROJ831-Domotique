@@ -1,3 +1,4 @@
+import pymongo
 def getItem(logs, categ, Id,actions,limit=None):
     '''
         Obtenir tous les événements d'un item défini par une Catégorie, un ID et une liste d'action
@@ -92,7 +93,7 @@ def getAll(collection,limit=None):
         possibilité d'avoir une quantité limité de résultats
     '''
     if limit==None:
-        results = collection.find({}).sort({'Ending Date' : -1})
+        results = collection.find({}).sort([("Ending Date", pymongo.DESCENDING)])
     else:
-        results = collection.find({}).sort({'Ending Date' : -1}).limit(limit)
+        results = collection.find({}).sort([("Ending Date", pymongo.DESCENDING)]).limit(limit)
     return results
