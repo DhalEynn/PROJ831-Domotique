@@ -2,11 +2,19 @@ body{
     background-color: rgb(128, 151, 255);
 }
 
+.select-item {
+    width: 100%;
+    padding: 0; 
+    border: 0;
+    background-color: white;
+}
+
 table {
     border-collapse: collapse;
     margin: 20px auto;
 }
-  
+
+
 table, th, td {
     border: 1px solid black;
 }
@@ -16,31 +24,38 @@ table th{
     background-color: black;
     color: white;
     padding: 8px;
-  }
-
-table td{
-    padding: 4px;
-}
-
-table tr:nth-child(odd){
-    background-color: rgb(221, 221, 221);
-}
-
-table tr:nth-child(even){
-    background-color: white;
-}
-
-table tr:hover {
-    background-color: rgb(96, 114, 194);
 }
 
 #items {
-    width: 20%
+    width: 20%;
+    background-color: white;
 }
+
+#items td {
+    padding: 0;
+}
+
 
 #events {
     width: 80%;
 }
+
+#events td {
+    padding: 4px;
+}
+
+#events tr:nth-child(odd){
+    background-color: rgb(221, 221, 221);
+}
+
+#events tr:nth-child(even){
+    background-color: white;
+}
+
+#events tr:hover {
+    background-color: rgb(96, 114, 194);
+}
+
 
 #events_previous {
     background-color: rgb(28, 134, 255);
