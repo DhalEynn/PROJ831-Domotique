@@ -28,7 +28,9 @@
 					<tr>
 						{% for key, value in items.items() %}
 							<td>
-								<form><input type=submit value='{{value[i]}}' class="select-item"></form>
+								{% if value[i] %}
+									<form><input type=submit value='{{value[i]}}' class="select-item"></form>
+								{% endif %}	
 							</td> 
 						{% endfor %}
 					</tr>
