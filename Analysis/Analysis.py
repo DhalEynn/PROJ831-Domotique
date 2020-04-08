@@ -7,6 +7,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
 import seaborn as sns
+from sklearn.metrics import mean_squared_error
 
 def lastObjectFreq(category,ID, time):
     logs = connectDB.connectToCollection('logs2')
@@ -64,9 +65,10 @@ def action_to_list(category,ID, maxTime):
             time += [i]
             i += 1
             etat.append(etat[-1])
-        time += [i]
-        i += 1
-        etat += [int(action['Ending State'][1])]
+        if time[-1] <= maxTime:
+            time += [i]
+            i += 1
+            etat += [int(action['Ending State'][1])]
     return [time,etat]
 
 def list_to_graph(list_action):         
@@ -76,34 +78,6 @@ def list_to_graph(list_action):
                     name='lines+markers'))
     fig.show()
 
-def prevision(time, list_etat, duree):
-    periode_off = frequence(time,list_etat, -1)
-    periode_on = frequence(time,list_etat, 1)
-    i = 1
-    while i<len(list_etat):
-        if list_etat[i] != list_etat[i-1]:
-            last_transition = list_etat[i] - list_etat[i-1]
-            last_time = time[i]
-        i += 1
-    next_etat=list_etat[-1]
-    if last_transition == 1:
-        time_to_transition = periode_on - (time[-1] - last_time)
-    else:
-        time_to_transition = periode_off - (time[-1] - last_time)  
-    i=0 
-    while i < duree:
-        time += [time[-1] + 1]
-        list_etat += [next_etat]
-        time_to_transition = time_to_transition -1
-        if time_to_transition <= 0:
-            if next_etat == 1:
-                next_etat = 0
-                time_to_transition = periode_off
-            if next_etat == 0:
-                next_etat = 1
-                time_to_transition = periode_on
-        i += 1
-    return ([time, list_etat])
     
     
     
@@ -190,11 +164,5 @@ def correlation():
 #f2 = action_to_list('HEATER',6,10000)[1]
 
 #print(correlation())
-liste_action = action_to_list('ROLLINGSHUTTER',5, 10000)
-#frequence(liste_action[0], liste_action[1], 1)
-#list_to_graph(liste_action)
-list_to_graph(prevision(liste_action[0], liste_action[1], 30000))
 
-liste_action = action_to_list('ROLLINGSHUTTER',5, 30000)
-list_to_graph(liste_action)
 
