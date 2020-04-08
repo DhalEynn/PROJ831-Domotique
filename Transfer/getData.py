@@ -5,9 +5,9 @@ def getItem(logs, categ, Id,actions,limit=None):
     '''
     results = []
     if limit ==None:
-        req = logs.find({"Category": categ, "Id" : Id,  "Action":{"$in":actions}}).sort({'Ending Date':-1})
+        req = logs.find({"Category": categ, "Id" : Id,  "Action":{"$in":actions}})
     else:
-        req = logs.find({"Category": categ, "Id" : Id,  "Action":{"$in":actions}}).limit(limit).sort({'Ending Date':-1})
+        req = logs.find({"Category": categ, "Id" : Id,  "Action":{"$in":actions}}).limit(limit)
     for log in req:
         results.append(log)
     return results
@@ -90,5 +90,5 @@ def getAll(collection):
     '''
         Obtenir tout d'une collection avec un tri sur Ending Date en decroissant
     '''
-    results = collection.find({}).sort({'Ending Date' : -1})
+    results = collection.find({}).limit(100)
     return results

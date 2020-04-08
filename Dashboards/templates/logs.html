@@ -29,7 +29,7 @@
 						{% for key, value in items.items() %}
 							<td>
 								{% if value[i] %}
-									<form><input type=submit value='{{value[i]}}' class="select-item"></form>
+									<form method='POST'><button type=submit name='item' value='{{key}} {{value[i]}}' class="select-item">{{value[i]}}</button></form>
 								{% endif %}	
 							</td> 
 						{% endfor %}
