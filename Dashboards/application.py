@@ -29,9 +29,13 @@ def logs():
     # events table
     actions = getData.getAllExistingActions(logs)
     if request.method == 'POST':
-        item = request.form['item'].split()
-        item[1] = int(item[1])
-        events = getData.getItem(logs, item[0], item[1] , actions, 100)
+        req = request.form['item']
+        if req == 'all':
+            events = getData.getAll(logs, 100)
+        else: 
+            item = req.split()
+            item[1] = int(item[1])
+            events = getData.getItem(logs, item[0], item[1] , actions, 100)
     else:
         events = getData.getAll(logs, 100)
     return render_template("logs.html", items=items, nb_line=nb_line, events=events)
