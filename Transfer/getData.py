@@ -1,9 +1,14 @@
-def getItem(logs, categ, Id,actions):
+def getItem(logs, categ, Id,actions,limit=None):
     '''
         Obtenir tous les événements d'un item défini par une Catégorie, un ID et une liste d'action
+        si limit est fixé retourne les limi premiers éléments
     '''
     results = []
-    for log in logs.find({"Category": categ, "Id" : Id,  "Action":{"$in":actions}}).limit(100):
+    if limit ==None:
+        req = logs.find({"Category": categ, "Id" : Id,  "Action":{"$in":actions}}).sort({'Ending Date':-1})
+    else:
+        req = logs.find({"Category": categ, "Id" : Id,  "Action":{"$in":actions}}).limit(limit).sort({'Ending Date':-1})
+    for log in req:
         results.append(log)
     return results
 
@@ -79,4 +84,11 @@ def getAllExistingActions(collection):
         Obtenir toutes les actions d'une collection
     '''
     results = collection.distinct( "Action" )
+    return results
+
+def getAll(collection):
+    '''
+        Obtenir tout d'une collection avec un tri sur Ending Date en decroissant
+    '''
+    results = collection.find({}).sort({'Ending Date' : -1})
     return results
