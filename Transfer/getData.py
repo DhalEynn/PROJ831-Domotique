@@ -87,7 +87,7 @@ def getAllExistingActions(collection):
     results = collection.distinct( "Action" )
     return results
 
-def getAll(collection):
+def getAll(collection,limit=None):
     '''
         Obtenir tout d'une collection avec un tri sur Ending Date en decroissant
     '''
