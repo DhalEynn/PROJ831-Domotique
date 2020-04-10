@@ -88,8 +88,14 @@ table th{
 
 /* Boutons de changement de page */
 
+#tableauDesLogs {
+    position: relative;
+}
+
+/* Text above the buttons */
 #events_info {
     display: block;
+    width: fit-content;
     background: linear-gradient(0deg, #1b2938, #24282b);
     color: #28a1dd;
     border-width: 1px;
@@ -101,13 +107,13 @@ table th{
     font-size: 0.6875rem;
     white-space: nowrap;
     border-radius: 4px;
-    padding: 5px 8px;
-    float: left
+    padding: 5px 8px
 }
 
 /* Wrapper for the buttons */
 #events_paginate {
     display: block;
+    width: fit-content;
     background: linear-gradient(0deg, #1b2938, #24282b);
     color: #28a1dd;
     border-width: 1px;
@@ -120,8 +126,7 @@ table th{
     white-space: nowrap;
     border-radius: 4px;
     padding: 5px 8px;
-    box-sizing: border-box;
-    float: left
+    box-sizing: border-box
 }
 
 /* Class for the numbered pages */
