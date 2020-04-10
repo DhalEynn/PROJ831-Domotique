@@ -40,12 +40,13 @@ def logs():
         # all
         if req == 'all':
             events = getData.getAll(logs, 100,True)
-        # item
+        
         else: 
             item = req.split()
-            if len(item)==1:
+            
+            if len(item)==1:#category
                 events = getData.getCategory(logs, item[0],actions,100,True)
-            else:
+            else: #item
                 item[1] = int(item[1])
                 events = getData.getItem(logs, item[0], item[1] , actions, 100,True)
                 # create plot
