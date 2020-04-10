@@ -9,7 +9,34 @@ from flask import Flask
 from flask import render_template
 from flask import request
 
+import plotly
+import plotly.graph_objs as go
+import pandas as pd
+import numpy as np
+import json
+
+
 app = Flask(__name__)
+
+def create_plot():
+
+
+    N = 40
+    x = np.linspace(0, 1, N)
+    y = np.random.randn(N)
+    df = pd.DataFrame({'x': x, 'y': y}) # creating a sample dataframe
+
+
+    data = [
+        go.Bar(
+            x=df['x'], # assign x as the dataframe column 'x'
+            y=df['y']
+        )
+    ]
+
+    graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
+
+    return graphJSON
 
 @app.route("/")
 def index():
@@ -46,7 +73,11 @@ def logs():
     # default page
     else:
         events = getData.getAll(logs, 100,True)
-    return render_template("logs.html", items=items, nb_line=nb_line, events=events)
+
+    # create plot
+    bar = create_plot()
+    
+    return render_template("logs.html", items=items, nb_line=nb_line, events=events, plot=bar)
 
 @app.route("/analyses")
 def analyse():

@@ -75,7 +75,10 @@
 				</tbody>
 			</table>
 			<div id="logs_chart">
-				test
+				<script>
+					var graphs = {{plot | safe}};
+					Plotly.plot('logs_chart',graphs,{});
+				</script>
 			</div>
 		</div>
 		
