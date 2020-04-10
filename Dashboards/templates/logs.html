@@ -12,7 +12,7 @@
 		<div>
 			<h2>Projet domotique - Logs</h2>
 		</div>
-		<div>
+		<div id="buttons_table">
 			<table id="items">
 				<thead>
 					<tr>
@@ -31,13 +31,10 @@
 								{% if value[i] %}
 									<form method='POST'><button type=submit name='item' value='{{key}} {{value[i]}}' class="select-item">{{value[i]}}</button></form>
 								{% endif %}	
-							</td> 
-							
+							</td>
 						{% endfor %}
-						
 					</tr>
 					{% endfor %}
-
 					<tr>
 						<td colspan=4>
 							<form id="form-all" method='POST'><button type=submit name='item' value='all' class="select-all-item">Tout</button></form>

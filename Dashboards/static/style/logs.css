@@ -92,26 +92,8 @@ table th{
     position: relative;
 }
 
-/* Text above the buttons */
-#events_info {
-    display: block;
-    width: fit-content;
-    background: linear-gradient(0deg, #1b2938, #24282b);
-    color: #28a1dd;
-    border-width: 1px;
-    border-style: solid;
-    border-top-color: #464646;
-    border-right-color: #4d4d4d;
-    border-bottom-color: #5a5a5a;
-    border-left-color: #4d4d4d;
-    font-size: 0.6875rem;
-    white-space: nowrap;
-    border-radius: 4px;
-    padding: 5px 8px
-}
-
 /* Wrapper for the buttons */
-#events_paginate {
+#events_paginate,#events_info,#events_length,#events_filter {
     display: block;
     width: fit-content;
     background: linear-gradient(0deg, #1b2938, #24282b);
