@@ -110,27 +110,6 @@ table th{
 }
 
 
-#events {
-    width: 80%;
-}
-
-#events td {
-    padding: 4px;
-}
-
-#events tr:nth-child(odd){
-    background-color: rgb(221, 221, 221);
-}
-
-#events tr:nth-child(even){
-    background-color: white;
-}
-
-#events tr:hover {
-    background-color: rgb(96, 114, 194);
-}
-
-
 
 /* Button to change page */
 
@@ -140,7 +119,7 @@ table th{
 
 #events_wrapper {
     display: block;
-    width: 49%;
+    width: fit-content;
     background: linear-gradient(0deg, #1b2938, #24282b);
     color: black;
     border-width: 1px;
@@ -173,6 +152,22 @@ table th{
     border-radius: 4px;
     padding: 5px 8px;
     box-sizing: border-box
+}
+
+#events td {
+    padding: 4px;
+}
+
+#events tr:nth-child(odd){
+    background-color: rgb(221, 221, 221);
+}
+
+#events tr:nth-child(even){
+    background-color: white;
+}
+
+#events tr:hover {
+    background-color: rgb(96, 114, 194);
 }
 
 /* Wrapper for the buttons */
