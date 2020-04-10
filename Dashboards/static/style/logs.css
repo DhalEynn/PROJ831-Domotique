@@ -1,5 +1,45 @@
-body{
-    background-color: rgb(128, 151, 255);
+html {
+    font: 1em / 1.4 sans-serif;
+    font-family: 'Trebuchet MS',Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    color: #e6e6e6;
+    margin: 0;
+    padding: 0;
+    word-wrap: break-word;
+    background-color: #181818
+}
+
+body {
+    /* background-color: rgb(128, 151, 255); */
+    background-color: #181818;
+    font-size: 0.75rem;
+}
+
+body>div {
+    color: #e6e6e6;
+    background: #272727;
+    border-width: 1px;
+    border-style: solid;
+    border-top-color: #464646;
+    border-right-color: #4d4d4d;
+    border-bottom-color: #5a5a5a;
+    border-left-color: #4d4d4d;
+    border-radius: 6px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+.element {
+    background-color: #272727;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 100%
+}
+
+.title {
+    text-align: center;
 }
 
 .select-item {
@@ -51,11 +91,16 @@ table th{
 
 #items {
     width: 20%;
-    background-color: white;
+    background-color: #272727;
+    color: white;
+    align-items: center;
+    max-width: 100%
 }
 
 #items td {
     padding: 0px;
+    background-color: white;
+    color: black;
 }
 *
 #items tr:last-of-type
@@ -86,10 +131,29 @@ table th{
 
 
 
-/* Boutons de changement de page */
+/* Button to change page */
 
 #tableauDesLogs {
     position: relative;
+}
+
+/* Table of elements */
+#events {
+    display: block;
+    width: fit-content;
+    background: linear-gradient(0deg, #1b2938, #24282b);
+    color: #28a1dd;
+    border-width: 1px;
+    border-style: solid;
+    border-top-color: #464646;
+    border-right-color: #4d4d4d;
+    border-bottom-color: #5a5a5a;
+    border-left-color: #4d4d4d;
+    font-size: 0.6875rem;
+    white-space: nowrap;
+    border-radius: 4px;
+    padding: 5px 8px;
+    box-sizing: border-box
 }
 
 /* Wrapper for the buttons */
