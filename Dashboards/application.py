@@ -34,8 +34,8 @@ def logs():
     # events table
     actions = getData.getAllExistingActions(logs)
     # selection with button
+    chart = None
     if request.method == 'POST':
-        chart = None
         req = request.form['item']
         # all
         if req == 'all':
