@@ -11,32 +11,11 @@ from flask import request
 
 import plotly
 import plotly.graph_objs as go
-import pandas as pd
 import numpy as np
 import json
 
 
 app = Flask(__name__)
-
-def create_plot():
-
-
-    N = 40
-    x = np.linspace(0, 1, N)
-    y = np.random.randn(N)
-    df = pd.DataFrame({'x': x, 'y': y}) # creating a sample dataframe
-
-
-    data = [
-        go.Bar(
-            x=df['x'], # assign x as the dataframe column 'x'
-            y=df['y']
-        )
-    ]
-
-    graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
-
-    return graphJSON
 
 @app.route("/")
 def index():
@@ -62,6 +41,7 @@ def logs():
 
         if req == 'all':
             events = getData.getAll(logs, 100,True)
+            bar = None
         # item
         else: 
             item = req.split()
@@ -70,13 +50,27 @@ def logs():
             else:
                 item[1] = int(item[1])
                 events = getData.getItem(logs, item[0], item[1] , actions, 100,True)
+
+            # create plot
+            x = []
+            y = []
+            for event in events:
+                if event['Action'] == 'EDGE RUNNED':
+                    x.append(event['Begin Date'])
+                    if event['Command'] in ['ON', 'UP']:
+                        y.append(1)
+                    elif event['Command'] in ['OFF', 'DOWN']:
+                        y.append(0)
+                    else:
+                        y.append(-1)
+            data = [go.Bar(x=x, y=y)]
+            bar = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
+
     # default page
     else:
         events = getData.getAll(logs, 100,True)
+        bar = None
 
-    # create plot
-    bar = create_plot()
-    
     return render_template("logs.html", items=items, nb_line=nb_line, events=events, plot=bar)
 
 @app.route("/analyses")
