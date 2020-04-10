@@ -51,17 +51,17 @@ def logs():
                 # create plot
                 bar_name = [req]
                 data = []
+                fig = go.Figure()
                 for i in range(len(events)):
                     if events[i]['Action'] == 'EDGE RUNNED':
                         y = events[i]['Begin Date']
                         if i>1:
                             y -= events[i-1]['Begin Date']
                         if events[i]['Command'] in ['ON', 'UP']:
-                            data.append(go.Bar(name=events[i]['Command'], x=bar_name, y=[y], marker_color=['green']))
+                            fig.add_trace(go.Bar(name=events[i]['Command'], x=bar_name, y=[y], marker_color=['green'], orientation='v'))
                         elif events[i]['Command'] in ['OFF', 'DOWN']:
-                            data.append(go.Bar(name=events[i]['Command'], x=bar_name, y=[y], marker_color=['red']))
-                fig = go.Figure(data=data)
-                fig.update_layout(barmode='stack', showlegend=False, width=600, height=800)
+                            fig.add_trace(go.Bar(name=events[i]['Command'], x=bar_name, y=[y], marker_color=['red'], orientation='v'))
+                fig.update_layout(barmode='stack')
                 
                 chart = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     # default page
