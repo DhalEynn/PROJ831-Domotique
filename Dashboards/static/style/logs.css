@@ -114,11 +114,11 @@ table th{
 /* Button to change page */
 
 #tableauDesLogs {
-    position: inline-block;
+    position: block;
 }
 
 #events_wrapper {
-    display: block;
+    display: inline-block;
     width: fit-content;
     background: linear-gradient(0deg, #1b2938, #24282b);
     color: black;
@@ -281,8 +281,8 @@ table th{
 /* Chart of the logs */
 
 #logs_chart {
-    display: block;
-    width: 49%;
+    display: inline-block;
+    width: fit-content;
     background: linear-gradient(0deg, #1b2938, #24282b);
     color: black;
     border-width: 1px;
