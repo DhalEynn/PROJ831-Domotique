@@ -114,12 +114,16 @@ table th{
 /* Button to change page */
 
 #tableauDesLogs {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    flex : 1 1 auto;
 }
 
     #events_wrapper {
         display: inline-block;
-        width: fit-content;
+        flex : 1 1 auto;
+        
+        /*width: fit-content;*/
         background: linear-gradient(0deg, #1b2938, #24282b);
         color: black;
         border-width: 1px;
@@ -138,6 +142,7 @@ table th{
         /* Table of elements */
         #events {
             display: block;
+            
             width: fit-content;
             background: linear-gradient(0deg, #1b2938, #24282b);
             color: black;
@@ -281,7 +286,9 @@ table th{
     /* Chart of the logs */
 
     #logs_chart {
-        display: inline-block;
+        display: flex;
+        flex : 1 1 auto;
+        
         width: fit-content;
         background: linear-gradient(0deg, #1b2938, #24282b);
         color: black;
