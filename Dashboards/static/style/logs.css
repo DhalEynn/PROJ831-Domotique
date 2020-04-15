@@ -288,7 +288,7 @@ table th{
     #logs_chart {
         display: flex;
         flex : 1 1 auto;
-        
+        max-height: 500px;
         width: fit-content;
         background: linear-gradient(0deg, #1b2938, #24282b);
         color: black;
