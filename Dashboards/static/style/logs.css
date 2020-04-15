@@ -34,7 +34,7 @@ body>div {
     color: white;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    /*align-items: center;*/
     padding: 5px 8px;
     max-width: 100%
 }
@@ -302,4 +302,8 @@ table th{
         white-space: nowrap;
         border-radius: 4px;
         padding: 5px 8px;
+    }
+    #logs_chart > div
+    {
+        margin : auto;
     }
