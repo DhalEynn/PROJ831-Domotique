@@ -10,7 +10,6 @@ html {
 }
 
 body {
-    /* background-color: rgb(128, 151, 255); */
     background-color: #181818;
     font-size: 0.75rem;
 }
@@ -35,6 +34,7 @@ body>div {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    padding: 5px 8px;
     max-width: 100%
 }
 
@@ -109,14 +109,13 @@ table th{
     background-color: grey;
 }
 
-
-
 /* Button to change page */
 
 #tableauDesLogs {
     display: flex;
     flex-wrap: wrap;
     flex : 1 1 auto;
+    padding: 0px;
 }
 
     #events_wrapper {
