@@ -6,11 +6,11 @@ html {
     margin: 0;
     padding: 0;
     word-wrap: break-word;
-    background-color: #181818
+    min-height: 100%;
+    background: linear-gradient(0deg, #1b2938, #24282b);
 }
 
 body {
-    /* background-color: rgb(128, 151, 255); */
     background-color: #181818;
     font-size: 0.75rem;
 }
