@@ -75,9 +75,21 @@
 			</table>
 			<div id="logs_chart">
 				<script>
-					var graphs = {{plot | safe}};
-					graphs['config']={displayModeBar: false};
-					Plotly.plot('logs_chart', graphs);
+					var None = undefined,
+					graphs = {{plot | safe}};
+
+					if (graphs==undefined)
+					{
+						var logs_chart = document.getElementById('logs_chart');
+						logs_chart.style.display='None';
+					}
+					else
+					{
+						graphs['config']={displayModeBar: false};
+						Plotly.plot('logs_chart', graphs);
+
+					}
+					
 				</script>
 			</div>
 		</div>
