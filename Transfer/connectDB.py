@@ -10,9 +10,5 @@ def connectToCollection(collection):
     client = MongoClient('mongodb://' + USERNAME + ':' + PASSWORD + '@' + SERVER)
     #db domo
     db = client.domo
-
-    if collection in db.collection_names():
-        return db[collection]
-
-    else:
-        print('Unknown collection')
+    return db[collection]
+    
