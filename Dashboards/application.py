@@ -49,8 +49,9 @@ def logs():
                 item[1] = int(item[1])
                 events = getData.getItem(logs, item[0], item[1] , actions, 100,True)
                 # create plot
-                bar_name = [req]
+                bar_name = ['']
                 data = []
+
                 fig = go.Figure()
                 for i in range(len(events)):
                     if events[i]['Action'] == 'EDGE RUNNED':
@@ -58,11 +59,11 @@ def logs():
                         if i>1:
                             y -= events[i-1]['Begin Date']
                         if events[i]['Command'] in ['ON', 'UP']:
-                            fig.add_trace(go.Bar(name=events[i]['Command'], x=bar_name, y=[y], marker_color=['green'], orientation='v'))
+                            fig.add_trace(go.Bar(name=events[i]['Command'], y=bar_name, x=[y], marker=dict(color=['green']), orientation='h'))
                         elif events[i]['Command'] in ['OFF', 'DOWN']:
-                            fig.add_trace(go.Bar(name=events[i]['Command'], x=bar_name, y=[y], marker_color=['red'], orientation='v'))
+                            fig.add_trace(go.Bar(name=events[i]['Command'], y=bar_name, x=[y], marker=dict(color=['red']), orientation='h'))
                 fig.update_layout(width=800,
-                                height=800,
+                                height=200,
                                 barmode='stack',
                                 showlegend=False)
                 
