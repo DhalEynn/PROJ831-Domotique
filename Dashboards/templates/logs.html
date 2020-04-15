@@ -77,7 +77,8 @@
 			<div id="logs_chart">
 				<script>
 					var graphs = {{plot | safe}};
-					Plotly.plot('logs_chart',graphs,{});
+					graphs['config']={displayModeBar: false};
+					Plotly.plot('logs_chart', graphs);
 				</script>
 			</div>
 		</div>
