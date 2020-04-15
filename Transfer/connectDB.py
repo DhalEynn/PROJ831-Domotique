@@ -28,5 +28,10 @@ def connectToCollection(collectionName):
         logs2 = db.logs2
         return logs2
 
+    elif (collectionName =='logs4'):
+        #collection analyse
+        logs4 = db.logs4
+        return logs4
+
     else:
         print('nope')

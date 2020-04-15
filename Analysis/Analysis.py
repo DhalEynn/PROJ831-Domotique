@@ -10,68 +10,86 @@ import seaborn as sns
 from sklearn.metrics import mean_squared_error
 from matplotlib import pyplot
 
-def lastObjectFreq(category,ID, time):
+def lastObjectFreq(category,object_id, time):
     """
-    calcul la frequence d'apparition de tout les objet avant l'action de l'objet donné dans la période time.
+    calculates the frequency of occurrence of all objects before the action of the given object in the time period.
+    category: category of the object
+    object_id: id of the object
+    time: time period in which we will check the occurence of other objects
     """
-    logs = connectDB.connectToCollection('logs')
-    # on récupère toute les actions d'un objet
-    list_actions = getData.getItem(logs, category, ID, ['EDGE RUNNED'])
+    logs = connectDB.connectToCollection('logs4')
+    # retrieve all the actions of an object
+    action_lists = getData.getItem(logs, category, object_id, ['EDGE RUNNED'])
     dico_frequency = {}
-    nb_actions = len(list_actions)
-    # on parcours les actions 
-    for action in list_actions:
-        # on récupère toute les actions précédents notre action
+    nb_actions = len(action_lists)
+    # go through the actions
+    for action in action_lists:
+        # we get back all the actions that preceded our action
         previous_action = getData.getDate(logs, 'begin', action['Begin Date'], action['Begin Date'] + time, ['EDGE RUNNED'])
         past_action = []
-        # on parcours toutes les actions précédentes
+        # we go through all the previous actions
         for p_action in previous_action:
             
-            category_action = p_action['Category']
-            id_action = p_action['Id']
-            comande_action = p_action['Function']
-            #si on a pas déjà rajouté l'action à notre dictionnaire on la rajoute
-            if [category_action,id_action] not in past_action:
-                past_action.append([category_action,id_action])
-                #si la clé existe déjà on incrémente le conteur
-                if ( dico_frequency.get(category_action, {}).get(id_action, {}).get(comande_action) ):
-                    dico_frequency[category_action][id_action][comande_action] += 1
-                #sinon on créer la clé
-                elif category_action  not in dico_frequency.keys():
-                    dico_frequency[category_action]={id_action:{comande_action: 1}}
+            action_category = p_action['Category']
+            action_id = p_action['Id']
+            action_command = p_action['Function']
+            # if we haven't already added the action to our dictionary, we'll add it.
+            if [action_category,action_id] not in past_action:
+                past_action.append([action_category,action_id])
+                # if the key already exists we increment the counter
+                if ( dico_frequency.get(action_category, {}).get(action_id, {}).get(action_command) ):
+                    dico_frequency[action_category][action_id][action_command] += 1
+                # otherwise we create the key
+                elif action_category  not in dico_frequency.keys():
+                    dico_frequency[action_category]={action_id:{action_command: 1}}
 
-                elif id_action not in dico_frequency[category_action].keys():
-                    dico_frequency[category_action][id_action] = {comande_action: 1}
+                elif action_id not in dico_frequency[action_category].keys():
+                    dico_frequency[action_category][action_id] = {action_command: 1}
                 else:
-                    dico_frequency[category_action][id_action][comande_action] = 1
+                    dico_frequency[action_category][action_id][action_command] = 1
 
     return(dico_frequency , nb_actions)
 
 def graphLastObjectFreq(dict_frequency, nb_actions):
+    """
+    create the barchart for our lastObjectFreq function
+    dict_frequency: trhe dictionnary with the frequency of each object (given by lastObjectFreq())
+    nb_actions: number of actions
+    """
     list_object=[]
     list_objet_frequency = []
     for key_category in dict_frequency.keys():
         for key_id in dict_frequency[key_category].keys():
-            nb = 0
+            nb_action = 0
             for key_comande in dict_frequency[key_category][key_id].keys():
-                nb += dict_frequency[key_category][key_id][key_comande]
+                nb_action += dict_frequency[key_category][key_id][key_comande]
             list_object += [key_category + str(key_id)]
-            list_objet_frequency += [nb/nb_actions]
+            list_objet_frequency += [nb_action/nb_actions]
     fig = px.bar(x=list_object, y=list_objet_frequency)
+    fig.update_layout(
+        xaxis_title="State",
+        yaxis_title="Time",
+        font=dict(
+            family="Courier New, monospace",
+            size=16,
+            color="#7f7f7f"
+    ))
     fig.show()
 
 
-def action_to_list(category,ID, maxTime):
+def action_to_list(category, object_id, maxTime):
     """
-    créer une liste des etat en fonction du temps, pour un objet données.
-    maxTime sert a limiter la quantité de données à traiter.
+    Create a time-based status list for a given object.
+    category: category of the object
+    object_id: id of the object
+    maxTime: used to limit the amount of data to be processed.
     """
-    logs = connectDB.connectToCollection('logs')
-    list_action = getData.getItem(logs, category, ID, ['EDGE RUNNED']) #récupére tout les action d'un objet
+    logs = connectDB.connectToCollection('logs4')
+    action_list = getData.getItem(logs, category, object_id, ['EDGE RUNNED']) # retrieves all the actions of an object
     time = [0]
-    etat = [0]
+    state = [0]
     i = 0
-    for action in list_action:
+    for action in action_list:
         if time[-1] > maxTime:
             break
         while len(time)< action['Begin Date']:
@@ -79,70 +97,81 @@ def action_to_list(category,ID, maxTime):
                 break
             time += [i]
             i += 1
-            etat.append(etat[-1])
+            state.append(state[-1])
         if time[-1] <= maxTime:
             time += [i]
             i += 1
-            etat += [int(action['Ending State'][1])]
-    return [time,etat] #on retourne une liste contenant, une liste de temps et une liste d'état.
+            state += [int(action['Ending State'][1])]
+    return [time,state] # return a list containing, a time list and a status list.
 
-def list_to_graph(list_action):
+def list_to_graph(action_list):
     """
     plot the graph of one object (state value according to time)
     """         
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=list_action[0], y=list_action[1],
+    fig.add_trace(go.Scatter(x=action_list[0], y=action_list[1],
                     mode='lines+markers',
-                    name='lines+markers'))
+                    name='lines+markers',))
+
+    fig.update_layout(
+        xaxis_title="State",
+        yaxis_title="Time",
+        font=dict(
+            family="Courier New, monospace",
+            size=16,
+            color="#7f7f7f"
+    ))
     fig.show()
 
     
     
 
-def mean_time(time,list_etat, transition):
+def mean_time(state_list, transition):
     """
-    calcul le temps moyen qu'une fonction passe dans l'etat on ou off.
-    -1 pour off. 1 pour on.
+    calculates the average time a function spends in the on or off state.
+    -1 for off. 1 for on.
+    state_list:
+    transition: 
     """   
     i = 1
-    time_debut = -1
-    time_fin = 0
-    nb = 0
-    somme = 0
-    while i < len(list_etat):
-        if list_etat[i] != list_etat[i-1]:
-            if  transition == list_etat[i] - list_etat[i-1]:
-                time_debut = time[i]
-                #print("time_debut = ", time_debut)
-            elif(time_debut != -1):
-                time_fin = time[i]
-                #print("duree =  ", time_fin - time_debut)
-                somme += (time_fin - time_debut)
-                nb += 1
+    begin_time = -1
+    end_time = 0
+    nb_action = 0
+    total_duration = 0
+    while i < len(state_list[1]):
+        if state_list[1][i] != state_list[1][i-1]:
+            if  transition == state_list[1][i] - state_list[1][i-1]:
+                begin_time = state_list[0][i]
+                #print("begin_time = ", begin_time)
+            elif(begin_time != -1):
+                end_time = state_list[0][i]
+                #print("duration =  ", end_time - begin_time)
+                total_duration += (end_time - begin_time)
+                nb_action += 1
         i += 1
-    #print(somme/nb)
-    return(somme/nb) 
+    #print(total_duration/nb_action)
+    return(total_duration/nb_action) 
 
 
-def period(list_state):
+def fullPeriodGraph(state_list):
     """ 
     Calculate the period between 2 on state and the period between 2 off state
-    list_state: list with all the states
+    state_list: list with all the states
     return: the list of all on period and the list of all off period
     """
     onPeriodList = [] 
     offPeriodList = []
     onPeriod = 0
     offPeriod = 0
-    if list_state[0] == 1:
+    if state_list[1][0] == 1:
         onPeriod = 1
     else :
         offPeriod = 1
-    # browse through list_state and increment onPeriod and offPeriod when it is needed
-    for i in range (len(list_state)):
-        if list_state[i] == 0:
+    # browse through state_list and increment onPeriod and offPeriod when it is needed
+    for i in range (len(state_list[1])):
+        if state_list[1][i] == 0:
             # if the state change, save the value of onPeriod and then set it to 0
-            if list_state[i] != list_state[i-1]:
+            if state_list[1][i] != state_list[1][i-1]:
                 onPeriodList.append(onPeriod)
                 onPeriod = 0
 
@@ -151,7 +180,7 @@ def period(list_state):
 
         else:
             # if the state change, save the value of offPeriod and then set it to 0
-            if list_state[i] != list_state[i-1]:
+            if state_list[1][i] != state_list[1][i-1]:
                 offPeriodList.append(offPeriod)
                 offPeriod = 0
             else:
@@ -160,9 +189,6 @@ def period(list_state):
     off = pd.Series(offPeriodList)
     pyplot.plot(on)
     pyplot.plot(off,color='red')  
-    return(onPeriodList, offPeriodList)
-
-
 
 
 
@@ -199,11 +225,37 @@ def correlation(maxSize):
         horizontalalignment='right'
     );
 
+def frequency_activation_minute(state_list, maxSize, period):
+    """
+    Return the list of frequencies of activation, at every time unit of a given period
+    state_list: list with all the states
+    maxSize: the maximum size of the list
+    period: length of the period to consider
+    """
+    # initialise our result array
+    list_freq = [list(range(period)), [0]*period]
+    # determine the iteration size 
+    itSize = min(maxSize,len(state_list[1]))
+    for i in range(itSize):
+        # end the for if we can't finish a period with the remaining states
+        if i % period == 0 and itSize < i + period :
+            break
+        # count ,for each time in a period, how many time the state was on
+        list_freq[1][i%period] += state_list[1][i]
 
-f1 = action_to_list('ROLLINGSHUTTER',5, 10000)
-list_to_graph(f1)
-#f2 = action_to_list('HEATER',6,10000)[1]
-#mean_time(f1[0], f1[1], 1)
-#print(correlation())
+    # calculate the number of period in our time window
+    nb_action_period = itSize // period
+    # calculate the frequency of activation for each time in a period
+    for i in range(len(list_freq[1])):
+        list_freq[1][i] = list_freq[1][i]/nb_action_period
+    return list_freq
 
+# f1 = action_to_list('ROLLINGSHUTTER',5, 10000)
+# f = frequence_activation_minute(f1, 5000, 1440)
 
+f2 = action_to_list('HEATER',6,100000)
+f = frequence_activation_minute(f2, 100000, 1440)
+list_to_graph(f)
+
+# mean_time(f1[0], f1[1], 1)
+# print(correlation())
