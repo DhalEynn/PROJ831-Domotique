@@ -22,7 +22,7 @@ def index():
 
 @app.route("/logs", methods=['GET', 'POST'])
 def logs():
-    logs = connectDB.connectToCollection("logs")
+    logs = connectDB.connectToCollection("logs4")
 
     # items table
     categs = getData.getAllExistingCategories(logs)
@@ -61,7 +61,10 @@ def logs():
                             fig.add_trace(go.Bar(name=events[i]['Command'], x=bar_name, y=[y], marker_color=['green'], orientation='v'))
                         elif events[i]['Command'] in ['OFF', 'DOWN']:
                             fig.add_trace(go.Bar(name=events[i]['Command'], x=bar_name, y=[y], marker_color=['red'], orientation='v'))
-                fig.update_layout(barmode='stack')
+                fig.update_layout(width=800,
+                                height=800,
+                                barmode='stack',
+                                showlegend=False)
                 
                 chart = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     # default page
