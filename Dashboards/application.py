@@ -50,18 +50,20 @@ def logs():
                 item[1] = int(item[1])
                 events = getData.getItem(logs, item[0], item[1] , actions, 100,True)
                 # create plot
-                x = []
-                y = []
-                for event in events:
-                    if event['Action'] == 'EDGE RUNNED':
-                        x.append(event['Begin Date'])
-                        if event['Command'] in ['ON', 'UP']:
-                            y.append(1)
-                        elif event['Command'] in ['OFF', 'DOWN']:
-                            y.append(0)
-                        else:
-                            y.append(-1)
-                fig = [go.Bar(x=x, y=y)]    
+                bar_name = [req]
+                data = []
+                fig = go.Figure()
+                for i in range(len(events)):
+                    if events[i]['Action'] == 'EDGE RUNNED':
+                        y = events[i]['Begin Date']
+                        if i>1:
+                            y -= events[i-1]['Begin Date']
+                        if events[i]['Command'] in ['ON', 'UP']:
+                            fig.add_trace(go.Bar(name=events[i]['Command'], x=bar_name, y=[y], marker_color=['green'], orientation='v'))
+                        elif events[i]['Command'] in ['OFF', 'DOWN']:
+                            fig.add_trace(go.Bar(name=events[i]['Command'], x=bar_name, y=[y], marker_color=['red'], orientation='v'))
+                fig.update_layout(barmode='stack')
+                
                 chart = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     # default page
     else:
