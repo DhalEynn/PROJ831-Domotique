@@ -17,3 +17,5 @@ UserInterfaceState.xcuserstate
 $RECYCLE.BIN/
 
 env.py
+*.zip
+*.log
