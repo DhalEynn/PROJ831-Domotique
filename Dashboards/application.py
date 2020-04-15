@@ -64,10 +64,15 @@ def logs():
                         elif events[i]['Command'] in ['OFF', 'DOWN']:
                             fig.add_trace(go.Bar(name=events[i]['Command'], y=bar_name, x=[y], marker=dict(color=['red']), orientation='h'))
                 fig.update_layout(width=800,
-                                height=200,
+                                height=50,
+                                margin=dict(
+                                l=10,
+                                r=10,
+                                b=10,
+                                t=10,),
                                 barmode='stack',
-                                showlegend=False)
-                
+                                showlegend=False,
+                                )
                 chart = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     # default page
     else:
