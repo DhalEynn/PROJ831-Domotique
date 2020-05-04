@@ -39,6 +39,30 @@ body>div {
     max-width: 100%
 }
 
+.goBackLink:link, .goBackLink:visited {
+    display: block;
+    float: left;
+    text-decoration: none;
+    background: linear-gradient(0deg, #1b2938, #24282b);
+    color: #28a1dd;
+    border-width: 1px;
+    border-style: solid;
+    border-top-color: #464646;
+    border-right-color: #4d4d4d;
+    border-bottom-color: #5a5a5a;
+    border-left-color: #4d4d4d;
+    border-radius: 4px;
+    padding: 5px 8px;
+    font-size: 0.6875rem;
+    white-space: nowrap
+}
+
+.goBackLink:hover, .goBackLink:active {
+    background: #203142;
+    text-decoration: none;
+    cursor: pointer
+}
+
 .title {
     text-align: center;
     display: block;
