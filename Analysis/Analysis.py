@@ -75,6 +75,7 @@ def graphLastObjectFreq(dict_frequency, nb_actions):
             color="#7f7f7f"
     ))
     fig.show()
+    return fig
 
 
 def action_to_list(category, object_id, maxTime):
@@ -187,8 +188,28 @@ def fullPeriodGraph(state_list):
                 offPeriod+=1
     on = pd.Series(onPeriodList)
     off = pd.Series(offPeriodList)
-    pyplot.plot(on)
-    pyplot.plot(off,color='red')  
+    color1 = 'green'
+    color2 = 'red'
+
+    trace1 = go.Scatter(
+        x = on.index,
+        y = on.values,
+        name='on',
+        line = dict(
+            color = color1
+        )
+    )
+    trace2 = go.Scatter(
+        x= off.index,
+        y =off.values,
+        name='off',
+        line = dict(
+            color = color2
+        )
+    )
+    data = [trace1, trace2]
+    fig = go.Figure(data=data)
+    fig.show()
 
 
 
@@ -252,6 +273,7 @@ def activation_per_period(state_list, maxSize, period):
 # f = frequence_activation_minute(f1, 5000, 1440)
 
 f2 = action_to_list('ROLLINGSHUTTER',25,10000)
+fullPeriodGraph(f2)
 list_to_graph(f2)
 
 # mean_time(f1[0], f1[1], 1)
