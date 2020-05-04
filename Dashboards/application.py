@@ -56,13 +56,26 @@ def logs():
                 fig = go.Figure()
                 for i in range(len(events)):
                     if events[i]['Action'] == 'EDGE RUNNED':
+                        rollingShutterState =""
+                        heaterState=""
+                        if (events[i]['Category'] in ['ROLLINGSHUTTER']):
+                            rollingShutterState = int(events[i]['Begin State'][1])
+                        elif (events[i]['Category'] in ['HEATER']):
+                            heaterState = int(events[i]['Begin State'][1])
+                        ShutterColors = ['#1D2000','#3B4000','#768000','#939F00','#B1BF00','#ECFF00']
+                        heaterColors = ['#FFDFDF','#FF9F9F','#FF8080','#FF6060','#FF4040','#FF0000']
                         y = events[i]['Begin Date']
                         if i>1:
                             y -= events[i-1]['Begin Date']
-                        if events[i]['Command'] in ['ON', 'UP']:
-                            fig.add_trace(go.Bar(name=events[i]['Command'], y=bar_name, x=[y], marker=dict(color=['green']), orientation='h'))
-                        elif events[i]['Command'] in ['OFF', 'DOWN']:
-                            fig.add_trace(go.Bar(name=events[i]['Command'], y=bar_name, x=[y], marker=dict(color=['red']), orientation='h'))
+                        if ((events[i]['Command'] in ['OFF']) and (events[i]['Category'] not in ['HEATER'])):
+                            fig.add_trace(go.Bar(name='ON', y=bar_name, x=[y], marker=dict(color=['green']), orientation='h'))
+                        elif ((events[i]['Command'] in ['ON']) and (events[i]['Category'] not in ['HEATER'])):
+                            fig.add_trace(go.Bar(name='OFF', y=bar_name, x=[y], marker=dict(color=['red']), orientation='h'))
+                        elif rollingShutterState in [0,1,2,3,4,5]:
+                            fig.add_trace(go.Bar(name=rollingShutterState, y=bar_name, x=[y], marker=dict(color=ShutterColors[rollingShutterState]), orientation='h'))
+                        elif heaterState in [0,1,2,3,4,5]:
+                            fig.add_trace(go.Bar(name=heaterState, y=bar_name, x=[y], marker=dict(color=heaterColors[heaterState]), orientation='h'))
+                            
                 fig.update_layout(width=800,
                                 height=50,
                                 margin=dict(
