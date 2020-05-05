@@ -1,4 +1,3 @@
-
 def listToString(s):  
     # initialize an empty string 
     str1 = ""  
@@ -29,7 +28,6 @@ def LineReadingFromFile(inputFile):
                 FormattedData.append(formattingData(filteredLine))
     return FormattedData
     
-
 
 def filtering(UpperLine):
     """

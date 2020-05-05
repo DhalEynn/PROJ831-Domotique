@@ -1,8 +1,6 @@
 from matplotlib import pyplot
 from pandas import DataFrame
 import pandas as pd
-from statsmodels.tsa.arima_model import ARIMA
-from sklearn.metrics import mean_squared_error
 import Analysis as an
 
 #rip arima
@@ -133,15 +131,18 @@ def periodPrediction(list_state, duree, list_freq, period):
     return list_state
 
 
+# data 
+# liste_action = an.action_to_list('LIGHT',1, 5000)
 
-liste_action = an.action_to_list('LIGHT',1, 5000)
-#an.list_to_graph(liste_action)
-#list_freq = an.frequence_activation_minute(liste_action, 5000, 1440)
-#predictions = periodPrediction(liste_action, 10000, list_freq, 1440)
-predictions = prediction(liste_action[0], liste_action[1], 10000)
-an.list_to_graph(predictions)
+# # prediction 1
+# predictions = prediction(liste_action[0], liste_action[1], 10000)
+# an.list_to_graph(predictions)
 
-liste_action = an.action_to_list('LIGHT',1, 15000)
-an.list_to_graph(liste_action)
-# mean_squared_error(liste_action, predictions)
+# # prediction 2
+# list_freq = an.frequency_activation_minute(liste_action, 5000, 1440)
+# predictions = periodPrediction(liste_action, 10000, list_freq, 1440)
+# an.list_to_graph(predictions)
 
+# # real data
+# liste_action = an.action_to_list('LIGHT',1, 15000)
+# an.list_to_graph(liste_action)

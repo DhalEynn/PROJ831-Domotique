@@ -93,6 +93,24 @@ def logs():
 
     return render_template("logs.html", items=items, nb_line=nb_line, events=events, plot=chart)
 
-@app.route("/analyses")
+@app.route("/analyses", methods=['GET', 'POST'])
 def analyse():
-    return render_template("analyses.html")
+    logs = connectDB.connectToCollection("logs4")
+    analysis = connectDB.connectToCollection("analysis")
+
+    # items table
+    categs = getData.getAllExistingCategories(logs)
+    items = {}
+    for categ in categs:
+        items[categ] = getData.getAllIdFromCategory(logs, categ)
+    nb_line = max(len(value) for key, value in items.items())
+
+    # selection with button
+    chart1 = None
+    if request.method == 'POST':
+        req = request.form['item']
+        item = req.split()
+        item[1] = int(item[1])
+        res = getData.getChart(analysis, 'lastObjectFreq', item[0], item[1])
+        chart1 = res['jsondumps']
+    return render_template("analyses.html", items=items, nb_line=nb_line, plot1 = chart1)
