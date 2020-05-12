@@ -144,3 +144,29 @@ table th{
 /* --------------------- */
 /* ----- THIRD DIV ----- */
 /* --------------------- */
+
+#charts {
+    /* Global div for the third div */
+    display: flex;
+    flex-wrap: wrap;
+    flex : 1 1 auto;
+    padding: 0px;
+}
+
+/* Global rule for all divs */
+#charts>div {
+    display: inline-block;
+    flex : 1 1 auto;
+    background: linear-gradient(0deg, #1b2938, #24282b);
+    color: black;
+    border-width: 1px;
+    border-style: solid;
+    border-top-color: #464646;
+    border-right-color: #4d4d4d;
+    border-bottom-color: #5a5a5a;
+    border-left-color: #4d4d4d;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    border-radius: 4px;
+    padding: 5px 8px
+}
