@@ -1,7 +1,8 @@
+import sys
+sys.path.append('../')
 from pandas import DataFrame
 import pandas as pd
-import Analysis as analysis
-
+import Analysis.Analysis as analysis
 
 def prediction(time, list_state, duration):
     """
@@ -86,6 +87,6 @@ def periodPrediction(list_state, duration, list_activation, period):
 # analysis.list_to_graph(liste_action)
 # mean_squared_error(liste_action, predictions)
 
-# # real data
+# real data
 # liste_action = analysis.action_to_list('LIGHT',1, 15000)
 # analysis.list_to_graph(liste_action)

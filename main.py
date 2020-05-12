@@ -22,5 +22,7 @@ items = generate.getAllItems()
 # lastObjectFreq = generate.createGraphLastObjectFreq(items)
 # sendData.send_items(lastObjectFreq, analysisDB)
 
-predictions = generate.createPredictions(items)
-sendData.send_items(predictions, analysisDB)
+
+
+# predictions = generate.createPredictions(items)
+# sendData.send_items(predictions, analysisDB)
