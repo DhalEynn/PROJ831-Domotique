@@ -9,6 +9,7 @@ import Transfer.sendData as sendData
 import Transfer.getData as getData
 import Transfer.connectDB as connectDB
 import Analysis.generate as generate
+import Analysis.Analysis as analysis
 
 # Send logs to DB
 logsDB = connectDB.connectToCollection('logs4')
@@ -27,3 +28,6 @@ sendData.send_items(fullPeriod, analysisDB)
 
 predictions = generate.createPredictions(items)
 sendData.send_items(predictions, analysisDB)
+
+correlation = generate.createCorrelation()
+sendData.send_items(correlation, analysisDB)

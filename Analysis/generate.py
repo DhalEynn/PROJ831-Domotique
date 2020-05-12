@@ -16,6 +16,14 @@ def getAllItems():
         items[categ] = getData.getAllIdFromCategory(logs, categ)
     return items
 
+def createCorrelation():
+    charts = []
+    fig = analysis.correlation(60000)
+    chart = {'chart_type': 'correlation',
+            'jsondumps': json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)}
+    charts.append(chart)
+    return charts
+
 def createGraphLastObjectFreq(items):
     charts = []
     for category in items:
@@ -49,7 +57,7 @@ def createPredictions(items):
             data = analysis.action_to_list(category, Id, 5000)
             # prediction 1
             predictions = prediction.prediction(data[0], data[1], 10000)
-            fig = analysis.list_to_graph(predictions)
+            fig = analysis.list_to_graph(predictions, "Time", "State")
             # prediction 2
             # list_freq = an.frequency_activation_minute(liste_action, 5000, 1440)
             # predictions = periodPrediction(liste_action, 10000, list_freq, 1440)
