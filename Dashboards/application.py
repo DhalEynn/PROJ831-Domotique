@@ -106,11 +106,16 @@ def analyse():
     nb_line = max(len(value) for key, value in items.items())
 
     # selection with button
-    chart1 = None
+    chartLastFreq = None
+    chartPrediction = None
+    chart = None
     if request.method == 'POST':
         req = request.form['item']
         item = req.split()
         item[1] = int(item[1])
-        res = getData.getChart(analysis, 'lastObjectFreq', item[0], item[1])
-        chart1 = res['jsondumps']
-    return render_template("analyses.html", items=items, nb_line=nb_line, plot1 = chart1)
+        resLastFreq = getData.getChart(analysis, 'lastObjectFreq', item[0], item[1])
+        chartLastFreq = resLastFreq['jsondumps']
+
+        resPrediction = getData.getChart(analysis, 'prediction', item[0], item[1])
+        chartPrediction = resPrediction['jsondumps']
+    return render_template("analyses.html", items=items, nb_line=nb_line, plotLastFreq = chartLastFreq, plotPredition = chartPrediction)

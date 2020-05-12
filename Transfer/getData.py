@@ -132,5 +132,8 @@ def getAll(collection,limit=None,sort=False):
     return results
 
 def getChart(analysis, chart_type, categ, Id):
+    '''
+    
+    '''
     req = analysis.find_one({"Category": categ, "Id" : Id,  "chart_type": chart_type})
     return req

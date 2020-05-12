@@ -40,17 +40,36 @@
 			<div id="graphLastObjectFreq">
 				<script>
 					var None = undefined,
-					graph = {{plot1 | safe}};
+					graphLastFreq = {{plotLastFreq | safe}};
 
-					if (graph==undefined)
+					if (graphLastFreq==undefined)
 					{
-						var graphLastObjectFreq = document.getElementById('graphLastObjectFreq');
-						graphLastObjectFreq.style.display='None';
+						var graphLastObjectFreqHTML = document.getElementById('graphLastObjectFreq');
+						graphLastObjectFreqHTML.style.display='None';
 					}
 					else
 					{
-						graph['config']={displayModeBar: false};
-						Plotly.plot('graphLastObjectFreq', graph);
+						graphLastFreq['config']={displayModeBar: false};
+						Plotly.plot('graphLastObjectFreq', graphLastFreq);
+
+					}
+				</script>
+			</div>
+
+			<div id="graphPrediction">
+				<script>
+					var None = undefined,
+					graphPrediction= {{plotPredition | safe}};
+
+					if (graphLastFreq==undefined)
+					{
+						var graphPredictionHTML = document.getElementById('graphPrediction');
+						graphPredictionHTML.style.display='None';
+					}
+					else
+					{
+						graphPrediction['config']={displayModeBar: false};
+						Plotly.plot('graphPrediction', graphPrediction);
 
 					}
 				</script>
