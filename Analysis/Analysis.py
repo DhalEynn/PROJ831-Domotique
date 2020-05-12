@@ -121,10 +121,8 @@ def list_to_graph(action_list):
             color="#7f7f7f"
     ))
     fig.show()
-
-    
-    
-
+    return fig
+ 
 def mean_time(state_list, transition):
     """
     calculates the average time a function spends in the on or off state.
@@ -141,16 +139,12 @@ def mean_time(state_list, transition):
         if state_list[1][i] != state_list[1][i-1]:
             if  transition == state_list[1][i] - state_list[1][i-1]:
                 begin_time = state_list[0][i]
-                #print("begin_time = ", begin_time)
             elif(begin_time != -1):
                 end_time = state_list[0][i]
-                #print("duration =  ", end_time - begin_time)
                 total_duration += (end_time - begin_time)
                 nb_action += 1
         i += 1
-    #print(total_duration/nb_action)
     return(total_duration/nb_action) 
-
 
 def fullPeriodGraph(state_list):
     """ 
@@ -208,9 +202,7 @@ def fullPeriodGraph(state_list):
     data = [trace1, trace2]
     fig = go.Figure(data=data)
     fig.show()
-
-
-
+    return fig
 
 def correlation(maxSize):
     """ 
@@ -242,7 +234,7 @@ def correlation(maxSize):
         ax.get_xticklabels(),
         rotation=45,
         horizontalalignment='right'
-    );
+    )
 
 def activation_per_period(state_list, maxSize, period):
     """
@@ -266,13 +258,3 @@ def activation_per_period(state_list, maxSize, period):
         else:
             list_activation[1][i%period] = {state_list[1][i]: 1}
     return list_activation
-
-# f1 = action_to_list('ROLLINGSHUTTER',5, 10000)
-# f = frequence_activation_minute(f1, 5000, 1440)
-
-f2 = action_to_list('ROLLINGSHUTTER',25,10000)
-fullPeriodGraph(f2)
-list_to_graph(f2)
-
-# mean_time(f1[0], f1[1], 1)
-# print(correlation())
