@@ -156,7 +156,6 @@ table th{
 /* Global rule for all divs */
 #charts>div {
     display: inline-block;
-    flex : 1 1 auto;
     background: linear-gradient(0deg, #1b2938, #24282b);
     color: black;
     border-width: 1px;
