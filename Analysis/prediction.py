@@ -1,147 +1,90 @@
-from matplotlib import pyplot
 from pandas import DataFrame
 import pandas as pd
 from statsmodels.tsa.arima_model import ARIMA
-from sklearn.metrics import mean_squared_error
 import Analysis as an
 
-#rip arima
-"""
-Arima, Arima, Arima, Arima,
-Whou ou ou "Arima"
-Whou ou ou "Arima"
-Whou ou ou "Arima"
-Whou ou ou "Arima"
 
-Elle répondait au nom de Arima
-L'erreur' ne voulaient pas la cher-lâ
-Elle faisait trembler tous les villages
-Les gens me disaient : "Méfie toi d'arima"
-[x2]
 
-C'était un phénomène, elle n'était pas humaine
-Le genre de femme qui change le plus grand délinquant en gentleman
-
-Une beauté sans pareille, tout le monde veut s'en emparer
-Sans savoir qu'elle les mène en bateau
-Hypnotisés, on pouvait tout donner
-Elle n'avait qu'à demander puis aussitôt on démarrait
-On cherchait à l'impressionner, à devenir son préféré
-Sans savoir qu'elle les mène en bateau
-Mais quand je la vois danser le soir
-J'aimerais devenir la chaise sur laquelle elle s'assoit
-Ou moins que ça, un moins que rien
-Juste une pierre sur son chemin
-
-Elle répondait au nom de Bella
-Les gens du coin ne voulaient pas la cher-lâ
-Elle faisait trembler tous les villages
-
-Les gens me disaient : "Méfie toi d'arima'"
-[x2]
-
-Oui, c'est un phénomène qui aime hanter nos rêves
-Cette femme était nommée, Bella la peau dorée
-Les femmes la haïssaient, d'autres la jalousaient
-Mais les hommes ne pouvaient que l'aimer
-Elle n'était pas d'ici, ni facile, ni difficile
-Synonyme de "magnifique", à ses pieds : que des disciples
-Qui devenaient vite indécis, tremblants comme les feuilles
-Elle te caressait sans même te toucher
-Mais quand je la vois danser le soir
-J'aimerai devenir la chaise sur laquelle elle s'assoit
-
-Ou moins que ça, un moins que rien
-Juste une pierre sur son chemin
-
-Elle répondait au nom d'arima'
-L'erreur ne voulaient pas la cher-lâ
-Elle faisait trembler tous les villages
-Les gens me disaient : "Méfie toi d'arima"
-[x2]
-
-Allez, fais moi tourner la tête (Hé-hé)
-Tourner la tête (Héhé)
-Rend moi bête comme mes ieds-p (Hé-hé)
-Bête comme mes ieds-p (Héhé)
-J'suis l'ombre de ton ien-ch (Hé-hé)
-L'ombre de ton ien-ch (Héhé)
-Fais moi tourner la tête (Hé-hé)
-Tourner la tête (Héhé)
-
-Fais moi tourner la tête (Hé-hé)
-Tourner la tête (Héhé)
-Rend moi bête comme mes ieds-p (Hé-hé)
-Bête comme mes ieds-p (Héhé)
-J'suis l'ombre de ton ien-ch (Hé-hé)
-L'ombre de ton ien-ch (Héhé)
-Fais moi tourner la tête (Hé-hé)
-Tourner la tête (Héhé)
-
-Elle répondait au nom d'arima
-L'erreur ne voulaient pas la cher-lâ
-Elle faisait trembler tous les villages
-Les gens me disaient : "Méfie toi d'Arima"  
-"""
-
-#1440
-def prediction(time, list_etat, duree):
+def prediction(time, list_state, duration):
     """
-    Prend le temps qu'une fonction passe dans l'etat on ou off.
-    Puis continue la fonction, des que le temps passé dans un état dépasse le temps moyen on change d'état et ainsi de suite.
-    duree définis la periode sur laquelle on va faire des prevision.
+    Takes the time for a function to go on or off.
+    Then continues the function, as soon as the time spent in a state exceeds the average time, the state changes and so on.
+    Duration Defines the period of time over which we will make predictions.
     """
-    periode_off = an.mean_time([time,list_etat], -1)
-    periode_on = an.mean_time([time,list_etat], 1)
+    periode_off = an.mean_time([time,list_state], -1)
+    periode_on = an.mean_time([time,list_state], 1)
     i = 1
-    #on récupére le dernier changement d'etat et le temps auquel il ce produit.
-    while i<len(list_etat):
-        if list_etat[i] != list_etat[i-1]:
-            last_transition = list_etat[i] - list_etat[i-1]
+    # we retrieve the last state change and the time at which it occurred.
+    while i<len(list_state):
+        if list_state[i] != list_state[i-1]:
+            last_transition = list_state[i] - list_state[i-1]
             last_time = time[i]
         i += 1
-    next_etat=list_etat[-1]
-    #on calcul le temps qu'il reste dans l'etat en cours.
+    next_state=list_state[-1]
+    # we calculate how much time is left in the current state.
     if last_transition == 1:
         time_to_transition = periode_on - (time[-1] - last_time)
     else:
         time_to_transition = periode_off - (time[-1] - last_time) 
     i=0 
-    while i < duree:
+    while i < duration:
         time += [time[-1] + 1]
-        list_etat += [next_etat]
+        list_state += [next_state]
         time_to_transition = time_to_transition -1
-        # on change le prochain etat et on recalcul le temps moyen avant la transition suivant.
+        #  we change the next state and recalculate the average time to the next transition.
         if time_to_transition <= 0:
-            if next_etat == 1:
-                next_etat = 0
+            if next_state == 1:
+                next_state = 0
                 time_to_transition = periode_off
-            elif next_etat == 0:
-                next_etat = 1
+            elif next_state == 0:
+                next_state = 1
                 time_to_transition = periode_on
         i += 1
-    return ([time, list_etat])
+    return ([time, list_state])
 
-def periodPrediction(list_state, duree, list_freq, period):
+def periodPrediction(list_state, duration, list_activation, period):
+    """
+    Predict the n next states of a periodic function according to the most used state on the lasts periods
+    the number of times a state was resenced for each time unit
+    list_state: the list of previous states, used as training data
+    duration: n next states to predict
+    list_activation: list containing the number of  activation of each state at each periodic time unit
+    period: length of a period
+    """
     time_start = list_state[0][-1]
-    #print(len(list_freq[1]))
-    for i in range(1, duree):
+    # print(len(list_activation[1]))
+    for i in range(1, duration):
         list_state[0] += [time_start + i]
         hours = (time_start + i) % period
-        #print(hours)
-        list_state[1] += [round(list_freq[1][hours])]
+        # print(hours)
+        max_value = 0
+        state_id = -1
+        # we're looking for the most used state at the given time.
+        for state in list_activation[1][hours].keys():
+            if list_activation[1][hours][state] > max_value:
+                max_value = list_activation[1][hours][state]
+                state_id = state
+        if state_id == -1:
+            print('error unexpected state id')
+            return None
+        # we predict the most common state.
+        list_state[1] += [state_id]
     return list_state
 
 
+# Prediction exemple with 5000 training data and 10 000 predicted data
+# liste_action = an.action_to_list('LIGHT',1, 5000)
+# list_activation = an.activation_per_period(liste_action, 5000, 1440)
 
-liste_action = an.action_to_list('LIGHT',1, 5000)
-#an.list_to_graph(liste_action)
-#list_freq = an.frequence_activation_minute(liste_action, 5000, 1440)
-#predictions = periodPrediction(liste_action, 10000, list_freq, 1440)
-predictions = prediction(liste_action[0], liste_action[1], 10000)
-an.list_to_graph(predictions)
+# choose the prediction method you want to use
+# predictions = periodPrediction(liste_action, 10000, list_activation, 1440)
+# predictions = prediction(liste_action[0], liste_action[1], 10000)
 
-liste_action = an.action_to_list('LIGHT',1, 15000)
-an.list_to_graph(liste_action)
+# an.list_to_graph(predictions)
+# liste_action = an.action_to_list('LIGHT',1, 15000)
+# an.list_to_graph(liste_action)
+
+# liste_action = an.action_to_list('LIGHT',1, 15000)
+# an.list_to_graph(liste_action)
 # mean_squared_error(liste_action, predictions)
 

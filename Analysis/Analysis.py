@@ -75,6 +75,7 @@ def graphLastObjectFreq(dict_frequency, nb_actions):
             color="#7f7f7f"
     ))
     fig.show()
+    return fig
 
 
 def action_to_list(category, object_id, maxTime):
@@ -187,8 +188,28 @@ def fullPeriodGraph(state_list):
                 offPeriod+=1
     on = pd.Series(onPeriodList)
     off = pd.Series(offPeriodList)
-    pyplot.plot(on)
-    pyplot.plot(off,color='red')  
+    color1 = 'green'
+    color2 = 'red'
+
+    trace1 = go.Scatter(
+        x = on.index,
+        y = on.values,
+        name='on',
+        line = dict(
+            color = color1
+        )
+    )
+    trace2 = go.Scatter(
+        x= off.index,
+        y =off.values,
+        name='off',
+        line = dict(
+            color = color2
+        )
+    )
+    data = [trace1, trace2]
+    fig = go.Figure(data=data)
+    fig.show()
 
 
 
@@ -225,15 +246,15 @@ def correlation(maxSize):
         horizontalalignment='right'
     );
 
-def frequency_activation_minute(state_list, maxSize, period):
+def activation_per_period(state_list, maxSize, period):
     """
-    Return the list of frequencies of activation, at every time unit of a given period
+    Return a list containing the number of  activation of each state at each periodic time unit
     state_list: list with all the states
     maxSize: the maximum size of the list
     period: length of the period to consider
     """
     # initialise our result array
-    list_freq = [list(range(period)), [0]*period]
+    list_activation = [list(range(period)), [{}]*period]
     # determine the iteration size 
     itSize = min(maxSize,len(state_list[1]))
     for i in range(itSize):
@@ -241,21 +262,19 @@ def frequency_activation_minute(state_list, maxSize, period):
         if i % period == 0 and itSize < i + period :
             break
         # count ,for each time in a period, how many time the state was on
-        list_freq[1][i%period] += state_list[1][i]
 
-    # calculate the number of period in our time window
-    nb_action_period = itSize // period
-    # calculate the frequency of activation for each time in a period
-    for i in range(len(list_freq[1])):
-        list_freq[1][i] = list_freq[1][i]/nb_action_period
-    return list_freq
+        if state_list[1][i] in list_activation[1][i%period].keys():
+            list_activation[1][i%period][state_list[1][i]] += 1 
+        else:
+            list_activation[1][i%period] = {state_list[1][i]: 1}
+    return list_activation
 
 # f1 = action_to_list('ROLLINGSHUTTER',5, 10000)
 # f = frequence_activation_minute(f1, 5000, 1440)
 
-f2 = action_to_list('HEATER',6,100000)
-f = frequence_activation_minute(f2, 100000, 1440)
-list_to_graph(f)
+f2 = action_to_list('ROLLINGSHUTTER',25,10000)
+fullPeriodGraph(f2)
+list_to_graph(f2)
 
 # mean_time(f1[0], f1[1], 1)
 # print(correlation())
