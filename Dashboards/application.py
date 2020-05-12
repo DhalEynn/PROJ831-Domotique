@@ -108,7 +108,7 @@ def analyse():
     # selection with button
     chartLastFreq = None
     chartPrediction = None
-    chart = None
+    chartFullPeriod = None
     if request.method == 'POST':
         req = request.form['item']
         item = req.split()
@@ -118,4 +118,10 @@ def analyse():
 
         resPrediction = getData.getChart(analysis, 'prediction', item[0], item[1])
         chartPrediction = resPrediction['jsondumps']
-    return render_template("analyses.html", items=items, nb_line=nb_line, plotLastFreq = chartLastFreq, plotPredition = chartPrediction)
+
+        resFullPeriod = getData.getChart(analysis, 'fullPeriod', item[0], item[1])
+        chartFullPeriod = resFullPeriod['jsondumps']
+
+
+
+    return render_template("analyses.html", items=items, nb_line=nb_line, plotLastFreq = chartLastFreq, plotPredition = chartPrediction, plotFullPeriod = chartFullPeriod)
