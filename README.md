@@ -37,6 +37,7 @@ In a command terminal :
   * (Windows CMD) : `set FLASK_APP=application.py`
   * (Linux): `export FLASK_APP=application.py`
 
+3. cd To /Dashboards
 
 4. Run the server:
 `flask run`
