@@ -149,8 +149,8 @@ table th{
     /* Global div for the third div */
     display: flex;
     flex-wrap: wrap;
-    flex : 1 1 auto;
     padding: 0px;
+    resize: horizontal;
 }
 
 /* Global rule for all divs */
@@ -167,5 +167,20 @@ table th{
     font-size: 0.75rem;
     white-space: nowrap;
     border-radius: 4px;
-    padding: 5px 8px
+    padding: 5px 8px;
 }
+
+#charts>div#heatMap
+{
+    margin: auto;
+    /*flex : 2;*/
+}/*
+#charts>div#graphPrediction
+{
+    flex : 2;
+}
+#charts>div#graphFullPeriod
+{
+    flex :1;
+}
+*/

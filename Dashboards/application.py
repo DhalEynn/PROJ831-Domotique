@@ -109,19 +109,25 @@ def analyse():
     chartLastFreq = None
     chartPrediction = None
     chartFullPeriod = None
+    heatMap = None
+    render = None
     if request.method == 'POST':
         req = request.form['item']
-        item = req.split()
-        item[1] = int(item[1])
-        resLastFreq = getData.getChart(analysis, 'lastObjectFreq', item[0], item[1])
-        chartLastFreq = resLastFreq['jsondumps']
+        if req == 'all':
+            resheatMap = getData.getHeatMap(analysis, 'correlation')
+            heatMap = resheatMap['jsondumps']
+        else:
+            
+            item = req.split()
+            item[1] = int(item[1])
+            resLastFreq = getData.getChart(analysis, 'lastObjectFreq', item[0], item[1])
+            chartLastFreq = resLastFreq['jsondumps']
 
-        resPrediction = getData.getChart(analysis, 'prediction', item[0], item[1])
-        chartPrediction = resPrediction['jsondumps']
+            resPrediction = getData.getChart(analysis, 'prediction', item[0], item[1])
+            chartPrediction = resPrediction['jsondumps']
 
-        resFullPeriod = getData.getChart(analysis, 'fullPeriod', item[0], item[1])
-        chartFullPeriod = resFullPeriod['jsondumps']
+            resFullPeriod = getData.getChart(analysis, 'fullPeriod', item[0], item[1])
+            chartFullPeriod = resFullPeriod['jsondumps']
+            
 
-
-
-    return render_template("analyses.html", items=items, nb_line=nb_line, plotLastFreq = chartLastFreq, plotPredition = chartPrediction, plotFullPeriod = chartFullPeriod)
+    return render_template("analyses.html", items=items, nb_line=nb_line, plotLastFreq = chartLastFreq, plotPredition = chartPrediction, plotFullPeriod = chartFullPeriod,plotHeatMap = heatMap)

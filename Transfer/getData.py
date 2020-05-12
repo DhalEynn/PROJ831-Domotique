@@ -137,3 +137,10 @@ def getChart(analysis, chart_type, categ, Id):
     '''
     req = analysis.find_one({"Category": categ, "Id" : Id,  "chart_type": chart_type})
     return req
+
+def getHeatMap(analysis, chart_type):
+    '''
+    
+    '''
+    req = analysis.find_one({"chart_type": chart_type})
+    return req

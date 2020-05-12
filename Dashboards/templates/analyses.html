@@ -33,6 +33,11 @@
 						{% endfor %}
 					</tr>
 					{% endfor %}
+					<tr>
+						<td colspan=4>
+							<form id="form-all" method='POST'><button type=submit name='item' value='all' class="select-all-item">Tout</button></form>
+						</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -89,6 +94,25 @@
 					{
 						graphFullPeriod['config']={displayModeBar: false};
 						Plotly.plot('graphFullPeriod', graphFullPeriod);
+
+					}
+				</script>
+			</div>
+
+			<div id="heatMap">
+				<script>
+					var None = undefined,
+					heatMap= {{plotHeatMap | safe}};
+
+					if (heatMap==undefined)
+					{
+						var heatMapHTML = document.getElementById('heatMap');
+						heatMapHTML.style.display='None';
+					}
+					else
+					{
+						heatMap['config']={displayModeBar: false};
+						Plotly.plot('heatMap', heatMap);
 
 					}
 				</script>
