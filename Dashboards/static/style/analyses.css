@@ -148,14 +148,14 @@ table th{
 #charts {
     /* Global div for the third div */
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     padding: 0px;
     resize: horizontal;
 }
 
 /* Global rule for all divs */
 #charts>div {
-    display: inline-block;
+    display: flex;
     background: linear-gradient(0deg, #1b2938, #24282b);
     color: black;
     border-width: 1px;
@@ -168,13 +168,20 @@ table th{
     white-space: nowrap;
     border-radius: 4px;
     padding: 5px 8px;
+    width: 700px;
 }
 
 #charts>div#heatMap
 {
     margin: auto;
     /*flex : 2;*/
-}/*
+}
+#charts>div#graphLastObjectFreq
+{
+    margin: auto;
+    flex : 2;
+}
+
 #charts>div#graphPrediction
 {
     flex : 2;
@@ -183,4 +190,3 @@ table th{
 {
     flex :1;
 }
-*/
