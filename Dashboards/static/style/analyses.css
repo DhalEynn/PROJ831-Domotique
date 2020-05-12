@@ -1,3 +1,7 @@
+/* ---------------------- */
+/* ----- GLOBAL CSS ----- */
+/* ---------------------- */
+
 html {
     font: 1em / 1.4 sans-serif;
     font-family: 'Trebuchet MS',Helvetica,Arial,sans-serif;
@@ -34,7 +38,6 @@ body>div {
     color: white;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     padding: 5px 8px;
     max-width: 100%
 }
@@ -68,6 +71,76 @@ body>div {
     display: block;
 }
 
-.text {
-    font-size: 14px;
+/* ---------------------- */
+/* ----- SECOND DIV ----- */
+/* ---------------------- */
+
+.select-item {
+    width: 100%;
+    padding: 0; 
+    border: 0;
+    background-color: white;
 }
+
+.select-all-item {
+    width: 100%;
+    padding: 0; 
+    margin:0;
+    border: 0;
+    background-color: grey;
+}
+
+.select-category {
+    width: 100%;
+    padding: 0; 
+    margin:0;
+    border: 0;
+    background-color: black;
+    color:white;
+
+}
+
+#form-all {
+    padding: 0; 
+    margin:0;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+
+
+table, th, td {
+    border: 1px solid black;
+}
+
+table th{
+    text-align: left;
+    background-color: black;
+    color: white;
+    padding: 8px;
+}
+
+#items {
+    width: 20%;
+    background-color: #272727;
+    color: white;
+    align-items: center;
+    max-width: 100%
+}
+
+#items td {
+    padding: 0px;
+    background-color: white;
+    color: black;
+}
+
+#items tr:last-of-type
+{
+    background-color: grey;
+}
+
+/* --------------------- */
+/* ----- THIRD DIV ----- */
+/* --------------------- */
