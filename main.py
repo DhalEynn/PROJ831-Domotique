@@ -18,6 +18,9 @@ import Analysis.generate as generate
 # Send analysis to DB
 analysisDB = connectDB.connectToCollection('analysis')
 items = generate.getAllItems()
-# charts = generate.createGraphLastObjectFreq(items)
 
-# sendData.send_items(charts, analysisDB)
+# lastObjectFreq = generate.createGraphLastObjectFreq(items)
+# sendData.send_items(lastObjectFreq, analysisDB)
+
+predictions = generate.createPredictions(items)
+sendData.send_items(predictions, analysisDB)

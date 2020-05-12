@@ -106,7 +106,7 @@ def getAllExistingCategories(collection):
 
 def getAllIdFromCategory(collection,categ):
     '''
-        Obtenir tous les Id appartenant à une category
+        Obtenir toutes les Ids appartenant à une catégorie
     '''
     results = collection.distinct( "Id",{ "Category": categ })
     return results
