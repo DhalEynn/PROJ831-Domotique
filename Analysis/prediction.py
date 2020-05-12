@@ -88,3 +88,6 @@ def periodPrediction(list_state, duration, list_activation, period):
 # an.list_to_graph(liste_action)
 # mean_squared_error(liste_action, predictions)
 
+# # real data
+# liste_action = an.action_to_list('LIGHT',1, 15000)
+# an.list_to_graph(liste_action)

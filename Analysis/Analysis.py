@@ -7,7 +7,6 @@ import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
 import seaborn as sns
-from sklearn.metrics import mean_squared_error
 from matplotlib import pyplot
 
 def lastObjectFreq(category,object_id, time):
@@ -76,7 +75,6 @@ def graphLastObjectFreq(dict_frequency, nb_actions):
     ))
     fig.show()
     return fig
-
 
 def action_to_list(category, object_id, maxTime):
     """
@@ -220,7 +218,7 @@ def correlation(maxSize):
     maxSize: the maximum size of the dataframe, (if it is too high it may create collumns with differents sizes and create a bug) 
     """
     # get the logs
-    logs = connectDB.connectToCollection('logs')
+    logs = connectDB.connectToCollection('logs4')
     categories = getData.getAllExistingCategories(logs)
     data ={}
     # build a dataframe with each column being a unique category,id couple
