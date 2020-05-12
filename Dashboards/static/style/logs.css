@@ -1,3 +1,7 @@
+/* ---------------------- */
+/* ----- GLOBAL CSS ----- */
+/* ---------------------- */
+
 html {
     font: 1em / 1.4 sans-serif;
     font-family: 'Trebuchet MS',Helvetica,Arial,sans-serif;
@@ -67,6 +71,10 @@ body>div {
     display: block;
 }
 
+/* ---------------------- */
+/* ----- SECOND DIV ----- */
+/* ---------------------- */
+
 .select-item {
     width: 100%;
     padding: 0; 
@@ -127,26 +135,28 @@ table th{
     background-color: white;
     color: black;
 }
-*
+
 #items tr:last-of-type
 {
     background-color: grey;
 }
 
-/* Button to change page */
+/* --------------------- */
+/* ----- THIRD DIV ----- */
+/* --------------------- */
 
 #tableauDesLogs {
+    /* Global div for the third div */
     display: flex;
     flex-wrap: wrap;
     flex : 1 1 auto;
     padding: 0px;
 }
 
+    /* Global div for the table of elements */
     #events_wrapper {
         display: inline-block;
         flex : 1 1 auto;
-        
-        /*width: fit-content;*/
         background: linear-gradient(0deg, #1b2938, #24282b);
         color: black;
         border-width: 1px;
@@ -162,10 +172,11 @@ table th{
         box-sizing: border-box
     }
 
-        /* Table of elements */
+    /* Table of elements */
+
+        /* Div for the table of elements */
         #events {
             display: block;
-            
             width: fit-content;
             background: linear-gradient(0deg, #1b2938, #24282b);
             color: black;
@@ -198,7 +209,7 @@ table th{
             background-color: rgb(96, 114, 194);
         }
 
-        /* Wrapper for the buttons */
+        /* Wrapper for the addons of the table */
         #events_paginate,#events_info,#events_length,#events_filter {
             display: block;
             width: fit-content;
@@ -217,59 +228,59 @@ table th{
             box-sizing: border-box
         }
 
-        /* Class for the numbered pages */
+        /* Page numbering */
 
-            /* Span for the numbered pages */
-            #events_paginate>span {
-                list-style: none;
-                margin: 0;
-                margin-left: 2px;
-                margin-right: 2px;
-                padding: 0;
-                display: inline-table
-            }
+        /* Span for page numbering */
+        #events_paginate>span {
+            list-style: none;
+            margin: 0;
+            margin-left: 2px;
+            margin-right: 2px;
+            padding: 0;
+            display: inline-table
+        }
 
-            .paginate_button,.ellipsis {
-                display: table-cell;
-                background: linear-gradient(0deg, #1b2938, #24282b);
-                color: #28a1dd;
-                border-width: 1px;
-                border-style: solid;
-                border-top-color: #464646;
-                border-right-color: #4d4d4d;
-                border-bottom-color: #5a5a5a;
-                border-left-color: #4d4d4d;
-                border-radius: 4px;
-                padding: 5px 8px;
-                font-size: 0.6875rem;
-                white-space: nowrap
-            }
+        .paginate_button,.ellipsis {
+            display: table-cell;
+            background: linear-gradient(0deg, #1b2938, #24282b);
+            color: #28a1dd;
+            border-width: 1px;
+            border-style: solid;
+            border-top-color: #464646;
+            border-right-color: #4d4d4d;
+            border-bottom-color: #5a5a5a;
+            border-left-color: #4d4d4d;
+            border-radius: 4px;
+            padding: 5px 8px;
+            font-size: 0.6875rem;
+            white-space: nowrap
+        }
 
-            .paginate_button:hover,.paginate_button:active {
-                background: #203142;
-                text-decoration: none;
-                cursor: pointer
-            }
+        .paginate_button:hover,.paginate_button:active {
+            background: #203142;
+            text-decoration: none;
+            cursor: pointer
+        }
 
-            /* Class for the links */
-            .paginate_button>a {
-                display: block;
-                padding: 5px 8px;
-                text-decoration: none;
-                color: inherit
-            }
+        /* Class for the links of page numbering */
+        .paginate_button>a {
+            display: block;
+            padding: 5px 8px;
+            text-decoration: none;
+            color: inherit
+        }
 
-            /* Class current page */
-            .current {
-                background: #395b7c;
-                color: #e0e0e0;
-                border: 1px solid #416486;
-                cursor: pointer
-            }
+        /* Class current page */
+        .current {
+            background: #395b7c;
+            color: #e0e0e0;
+            border: 1px solid #416486;
+            cursor: pointer
+        }
 
-            .current:hover,.current:active {
-                background: #3e6386
-            }
+        .current:hover,.current:active {
+            background: #3e6386
+        }
 
         /* Class for "previous" button */
         #events_previous {
