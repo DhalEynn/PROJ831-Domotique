@@ -8,7 +8,6 @@ import Analysis.prediction as prediction
 import json
 import plotly
 
-
 def getAllItems():
     logs = connectDB.connectToCollection('logs4')
     categs = getData.getAllExistingCategories(logs)
@@ -26,6 +25,19 @@ def createGraphLastObjectFreq(items):
             chart = {'Category': category,
                     'Id':  Id,
                     'chart_type': 'lastObjectFreq',
+                    'jsondumps': json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)}
+            charts.append(chart)
+    return charts
+
+def createFullPeriodGraph(items):
+    charts = []
+    for category in items:
+        for Id in items[category]:
+            data = analysis.action_to_list(category, Id, 50000)
+            fig = analysis.fullPeriodGraph(data)
+            chart = {'Category': category,
+                    'Id':  Id,
+                    'chart_type': 'fullPeriod',
                     'jsondumps': json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)}
             charts.append(chart)
     return charts
@@ -48,4 +60,3 @@ def createPredictions(items):
                     'jsondumps': json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)}
             charts.append(chart)
     return charts
-

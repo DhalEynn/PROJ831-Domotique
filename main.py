@@ -11,18 +11,19 @@ import Transfer.connectDB as connectDB
 import Analysis.generate as generate
 
 # Send logs to DB
-# logsDB = connectDB.connectToCollection('logs4')
-# filtered_data = filterData.LineReadingFromFile('Files/WOF4.log')
-# sendData.send_items(filtered_data, logsDB)
+logsDB = connectDB.connectToCollection('logs4')
+filtered_data = filterData.LineReadingFromFile('Files/WOF4.log')
+sendData.send_items(filtered_data, logsDB)
 
 # Send analysis to DB
 analysisDB = connectDB.connectToCollection('analysis')
 items = generate.getAllItems()
 
-# lastObjectFreq = generate.createGraphLastObjectFreq(items)
-# sendData.send_items(lastObjectFreq, analysisDB)
+lastObjectFreq = generate.createGraphLastObjectFreq(items)
+sendData.send_items(lastObjectFreq, analysisDB)
 
+fullPeriod = generate.createFullPeriodGraph(items)
+sendData.send_items(fullPeriod, analysisDB)
 
-
-# predictions = generate.createPredictions(items)
-# sendData.send_items(predictions, analysisDB)
+predictions = generate.createPredictions(items)
+sendData.send_items(predictions, analysisDB)
