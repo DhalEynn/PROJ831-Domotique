@@ -33,17 +33,9 @@ os.environ['DB_SERVER'] = ip
 
 
 **Web server :**
-1. Install dependencies:
+1. Install dependencies
 
-`pip install Flask`
-
-`pip install pymongo`
-
-
-2. Go in Dashboard folder:
-
-`cd Dashboards`
-
+2. Go in Dashboard folder: `cd Dashboards`
 
 3. Add the application as env var:
   * (Windows PowerShell): `$env:FLASK_APP = "application.py"`
@@ -51,8 +43,6 @@ os.environ['DB_SERVER'] = ip
   * (Linux): `export FLASK_APP=application.py`
 
 
-4. Run the server:
-
-`flask run`
+4. Run the server: `flask run`
 
 5. The web server is running on localhost:5000
