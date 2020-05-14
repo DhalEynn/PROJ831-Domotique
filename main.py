@@ -7,14 +7,14 @@ import Transfer.getData as getData
 import Transfer.connectDB as connectDB
 import Analysis.generate as generate
 
+import os
 import env
 
 
 # Parameters
-logs_file = "Files/WOF4.log"
-
-logs_collection = "logs4"
-analysis_collection = "analysis"
+logs_file = "Files/WOF3.log"
+logs_collection = os.getenv('COLLECTION_LOGS')
+analysis_collection = os.getenv('COLLECTION_ANALYSIS')
 
 
 # Send logs to DB
