@@ -37,7 +37,7 @@ os.environ['DB_SERVER'] = ip
 **Web server :**
 1. Install dependencies
 
-2. Go in Dashboard folder: `cd Dashboards`
+2. Go in Dashboards folder: `cd Dashboards`
 
 3. Add the application as env var:
   * (Windows PowerShell): `$env:FLASK_APP = "application.py"`
