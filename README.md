@@ -14,9 +14,9 @@
 ```python
 import os
 
-os.environ['DB_PASSWORD'] = 
-os.environ['DB_USERNAME'] = 
-os.environ['DB_SERVER'] = 
+os.environ['DB_PASSWORD'] = password
+os.environ['DB_USERNAME'] = username
+os.environ['DB_SERVER'] = ip
 ```
 
 **Input data program:**
@@ -29,11 +29,14 @@ os.environ['DB_SERVER'] =
 
 
 **Web server :**
-1. Install dependencies
+1. Install dependencies:
+
 `pip install Flask`
+
 `pip install pymongo`
 
-2. Go in Dashboard folder
+2. Go in Dashboard folder:
+
 `cd Dashboards`
 
 3. Add the application as env var:
