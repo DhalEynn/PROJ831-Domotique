@@ -4,8 +4,9 @@
 
 * python 3.X (tested with python 3.7.4 with or without Anaconda 3)
 * python packages :
-  * Flask (https://flask.palletsprojects.com/en/1.1.x/installation/#installation)
   * pymongo (https://pymongo.readthedocs.io/en/stable/installation.html)
+  * Flask (https://flask.palletsprojects.com/en/1.1.x/installation/#installation)
+  * plotly (https://github.com/plotly/plotly.py)
 * MongoDB (https://www.mongodb.com/community)
 
 
