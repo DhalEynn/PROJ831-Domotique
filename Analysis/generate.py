@@ -2,7 +2,7 @@ import sys
 sys.path.append('../')
 import Transfer.connectDB as connectDB
 import Transfer.getData as getData
-import Analysis.Analysis as analysis
+import Analysis.analysis as analysis
 import Analysis.prediction as prediction
 
 import env

@@ -1,6 +1,6 @@
 import sys
 sys.path.append('../')
-import Analysis.Analysis as analysis
+import Analysis.analysis as analysis
 
 from pandas import DataFrame
 import pandas as pd
