@@ -12,8 +12,11 @@
 
 
 ## Instructions :
+**General:**
 
-0. Create the file "env.py" like this:
+1. Start a mongoDB server
+
+2. Create the file "env.py" like this:
 ```python
 import os
 
@@ -22,12 +25,11 @@ os.environ['DB_USERNAME'] = username
 os.environ['DB_SERVER'] = ip
 ```
 
-
 **Input data program:**
 
 1. Put your input data file in "Files" folder (some example are in the repo)
 
-2. Edit main.py to use your file
+2. Edit #parameters section of main.py (filename and collection name of your database)
 
 3. Run main.py
 
