@@ -22,9 +22,12 @@
 ```python
 import os
 
-os.environ['DB_PASSWORD'] = password
-os.environ['DB_USERNAME'] = username
-os.environ['DB_SERVER'] = ip
+os.environ['DB_PASSWORD'] = 'password'
+os.environ['DB_USERNAME'] = 'username'
+os.environ['DB_SERVER'] = 'ip'
+os.environ['COLLECTION_LOGS'] = 'logs'
+os.environ['COLLECTION_ANALYSIS'] = 'analysis'
+
 ```
 
 **Input data program:**
