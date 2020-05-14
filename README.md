@@ -16,7 +16,9 @@
 
 1. Start a mongoDB server
 
-2. Create the file "env.py" like this:
+2. Install dependencies
+
+3. Create the file "env.py" like this:
 ```python
 import os
 
@@ -35,16 +37,14 @@ os.environ['DB_SERVER'] = ip
 
 
 **Web server :**
-1. Install dependencies
 
-2. Go in Dashboards folder: `cd Dashboards`
+1. Go in Dashboards folder: `cd Dashboards`
 
-3. Add the application as env var:
+2. Add the application as env var:
   * (Windows PowerShell): `$env:FLASK_APP = "application.py"`
   * (Windows CMD) : `set FLASK_APP=application.py`
   * (Linux): `export FLASK_APP=application.py`
 
+3. Run the server: `flask run`
 
-4. Run the server: `flask run`
-
-5. The web server is running on localhost:5000
+4. The web server is running on localhost:5000
