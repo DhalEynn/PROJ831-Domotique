@@ -1,0 +1,191 @@
+/* ---------------------- */
+/* ----- GLOBAL CSS ----- */
+/* ---------------------- */
+
+html {
+    font: 1em / 1.4 sans-serif;
+    font-family: 'Trebuchet MS',Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    color: #e6e6e6;
+    margin: 0;
+    padding: 0;
+    word-wrap: break-word;
+    min-height: 100%;
+    background-color: #181818;
+}
+
+body {
+    background-color: #181818;
+    font-size: 0.75rem;
+}
+
+body>div {
+    color: #e6e6e6;
+    background: #272727;
+    border-width: 1px;
+    border-style: solid;
+    border-top-color: #464646;
+    border-right-color: #4d4d4d;
+    border-bottom-color: #5a5a5a;
+    border-left-color: #4d4d4d;
+    border-radius: 6px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+.element {
+    background-color: #272727;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px 8px;
+    max-width: 100%
+}
+
+.goBackLink:link, .goBackLink:visited {
+    display: block;
+    float: left;
+    text-decoration: none;
+    background: linear-gradient(0deg, #1b2938, #24282b);
+    color: #28a1dd;
+    border-width: 1px;
+    border-style: solid;
+    border-top-color: #464646;
+    border-right-color: #4d4d4d;
+    border-bottom-color: #5a5a5a;
+    border-left-color: #4d4d4d;
+    border-radius: 4px;
+    padding: 5px 8px;
+    font-size: 0.6875rem;
+    white-space: nowrap
+}
+
+.goBackLink:hover, .goBackLink:active {
+    background: #203142;
+    text-decoration: none;
+    cursor: pointer
+}
+
+.title {
+    text-align: center;
+    display: block;
+}
+
+/* ---------------------- */
+/* ----- SECOND DIV ----- */
+/* ---------------------- */
+
+.select-item {
+    width: 100%;
+    padding: 0; 
+    border: 0;
+    background-color: white;
+}
+
+.select-all-item {
+    width: 100%;
+    padding: 0; 
+    margin:0;
+    border: 0;
+    background-color: grey;
+}
+
+.select-category {
+    width: 100%;
+    padding: 0; 
+    margin:0;
+    border: 0;
+    background-color: black;
+    color:white;
+
+}
+
+#form-all {
+    padding: 0; 
+    margin:0;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+
+
+table, th, td {
+    border: 1px solid black;
+}
+
+table th{
+    text-align: left;
+    background-color: black;
+    color: white;
+    padding: 8px;
+}
+
+#items {
+    width: 20%;
+    background-color: #272727;
+    color: white;
+    align-items: center;
+    max-width: 100%
+}
+
+#items td {
+    padding: 0px;
+    background-color: white;
+    color: black;
+}
+
+#items tr:last-of-type
+{
+    background-color: grey;
+}
+
+/* --------------------- */
+/* ----- THIRD DIV ----- */
+/* --------------------- */
+
+#charts {
+    /* Global div for the third div */
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px;
+    resize: horizontal;
+}
+
+/* Global rule for all divs */
+#charts>div {
+    display: inline-block;
+    background: linear-gradient(0deg, #1b2938, #24282b);
+    color: black;
+    border-width: 1px;
+    border-style: solid;
+    border-top-color: #464646;
+    border-right-color: #4d4d4d;
+    border-bottom-color: #5a5a5a;
+    border-left-color: #4d4d4d;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    border-radius: 4px;
+    padding: 5px 8px;
+}
+
+#charts>div#heatMap
+{
+    margin: auto;
+    /*flex : 2;*/
+}/*
+#charts>div#graphLastObjectFreq
+{
+    margin: auto;
+    flex : 2;
+}
+
+#charts>div#graphPrediction
+{
+    flex : 2;
+}
+#charts>div#graphFullPeriod
+{
+    flex :1;
+}*/

@@ -1,4 +1,3 @@
-
 def listToString(s):  
     # initialize an empty string 
     str1 = ""  
@@ -29,7 +28,6 @@ def LineReadingFromFile(inputFile):
                 FormattedData.append(formattingData(filteredLine))
     return FormattedData
     
-
 
 def filtering(UpperLine):
     """
@@ -75,11 +73,3 @@ def formattingData(filteredLine):
         formattedLine['Begin Date']=int(splittedLine1[-1].split(';')[0][2:])
         formattedLine['Ending Date']=int(splittedLine1[-1].split(';')[1][:-3])
     return formattedLine
-
-def testLineReadingFromFile():
-    value = LineReadingFromFile('Files/test.log')
-    expectedValue = [{'Category': 'SWITCH', 'Id': 2, 'Function': 'LIGHT', 'Action': 'TRY TO RUN EDGE', 'Begin State': '[1 , TRUE]', 'Command': 'OFF', 'Ending State': '[0 , FALSE]', 'Begin Date': 16434, 'Ending Date': 16435}, {'Category': 'SWITCH', 'Id': 2, 'Function': 'LIGHT', 'Action': 'STATE', 'Begin State': '[1 , TRUE]', 'Begin Date': 16372, 'Ending Date': 16434}, {'Category': 'LIGHT', 'Id': 1, 'Function': 'LIGHT', 'Action': 'TRY TO RUN EDGE', 'Begin State': '[1 , TRUE]', 'Command': 'OFF', 'Ending State': '[0 , FALSE]', 'Begin Date': 16434, 'Ending Date': 16434}, {'Category': 'SWITCH', 'Id': 2, 'Function': 'LIGHT', 'Action': 'EDGE RUNNED', 'Begin State': '[1 , TRUE]', 'Command': 'OFF', 'Ending State': '[0 , FALSE]', 'Begin Date': 16434, 'Ending Date': 16435}, {'Category': 'LIGHT', 'Id': 1, 'Function': 'LIGHT', 'Action': 'STATE', 'Begin State': '[1 , TRUE]', 'Begin Date': 16372, 'Ending Date': 16434}]
-
-print(LineReadingFromFile('Files/test.log'))
-
-

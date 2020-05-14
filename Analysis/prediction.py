@@ -1,9 +1,8 @@
+import sys
+sys.path.append('../')
 from pandas import DataFrame
 import pandas as pd
-from statsmodels.tsa.arima_model import ARIMA
-import Analysis as an
-
-
+import Analysis.Analysis as analysis
 
 def prediction(time, list_state, duration):
     """
@@ -11,8 +10,8 @@ def prediction(time, list_state, duration):
     Then continues the function, as soon as the time spent in a state exceeds the average time, the state changes and so on.
     Duration Defines the period of time over which we will make predictions.
     """
-    periode_off = an.mean_time([time,list_state], -1)
-    periode_on = an.mean_time([time,list_state], 1)
+    periode_off = analysis.mean_time([time,list_state], -1)
+    periode_on = analysis.mean_time([time,list_state], 1)
     i = 1
     # we retrieve the last state change and the time at which it occurred.
     while i<len(list_state):
@@ -73,18 +72,21 @@ def periodPrediction(list_state, duration, list_activation, period):
 
 
 # Prediction exemple with 5000 training data and 10 000 predicted data
-# liste_action = an.action_to_list('LIGHT',1, 5000)
-# list_activation = an.activation_per_period(liste_action, 5000, 1440)
+# liste_action = analysis.action_to_list('LIGHT',1, 5000)
+# list_activation = analysis.activation_per_period(liste_action, 5000, 1440)
 
 # choose the prediction method you want to use
 # predictions = periodPrediction(liste_action, 10000, list_activation, 1440)
 # predictions = prediction(liste_action[0], liste_action[1], 10000)
 
-# an.list_to_graph(predictions)
-# liste_action = an.action_to_list('LIGHT',1, 15000)
-# an.list_to_graph(liste_action)
+# analysis.list_to_graph(predictions)
+# liste_action = analysis.action_to_list('LIGHT',1, 15000)
+# analysis.list_to_graph(liste_action)
 
-# liste_action = an.action_to_list('LIGHT',1, 15000)
-# an.list_to_graph(liste_action)
+# liste_action = analysis.action_to_list('LIGHT',1, 15000)
+# analysis.list_to_graph(liste_action)
 # mean_squared_error(liste_action, predictions)
 
+# real data
+# liste_action = analysis.action_to_list('LIGHT',1, 15000)
+# analysis.list_to_graph(liste_action)

@@ -6,9 +6,6 @@ import Transfer.getData as getData
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
-import seaborn as sns
-from sklearn.metrics import mean_squared_error
-from matplotlib import pyplot
 
 def lastObjectFreq(category,object_id, time):
     """
@@ -77,7 +74,6 @@ def graphLastObjectFreq(dict_frequency, nb_actions):
     fig.show()
     return fig
 
-
 def action_to_list(category, object_id, maxTime):
     """
     Create a time-based status list for a given object.
@@ -105,7 +101,7 @@ def action_to_list(category, object_id, maxTime):
             state += [int(action['Ending State'][1])]
     return [time,state] # return a list containing, a time list and a status list.
 
-def list_to_graph(action_list):
+def list_to_graph(action_list, xaxis_title="State", yaxis_title="Time"):
     """
     plot the graph of one object (state value according to time)
     """         
@@ -115,18 +111,16 @@ def list_to_graph(action_list):
                     name='lines+markers',))
 
     fig.update_layout(
-        xaxis_title="State",
-        yaxis_title="Time",
+        xaxis_title=xaxis_title,
+        yaxis_title=yaxis_title,
         font=dict(
             family="Courier New, monospace",
             size=16,
             color="#7f7f7f"
     ))
     fig.show()
-
-    
-    
-
+    return fig
+ 
 def mean_time(state_list, transition):
     """
     calculates the average time a function spends in the on or off state.
@@ -143,16 +137,12 @@ def mean_time(state_list, transition):
         if state_list[1][i] != state_list[1][i-1]:
             if  transition == state_list[1][i] - state_list[1][i-1]:
                 begin_time = state_list[0][i]
-                #print("begin_time = ", begin_time)
             elif(begin_time != -1):
                 end_time = state_list[0][i]
-                #print("duration =  ", end_time - begin_time)
                 total_duration += (end_time - begin_time)
                 nb_action += 1
         i += 1
-    #print(total_duration/nb_action)
     return(total_duration/nb_action) 
-
 
 def fullPeriodGraph(state_list):
     """ 
@@ -210,9 +200,7 @@ def fullPeriodGraph(state_list):
     data = [trace1, trace2]
     fig = go.Figure(data=data)
     fig.show()
-
-
-
+    return fig
 
 def correlation(maxSize):
     """ 
@@ -220,7 +208,7 @@ def correlation(maxSize):
     maxSize: the maximum size of the dataframe, (if it is too high it may create collumns with differents sizes and create a bug) 
     """
     # get the logs
-    logs = connectDB.connectToCollection('logs')
+    logs = connectDB.connectToCollection('logs4')
     categories = getData.getAllExistingCategories(logs)
     data ={}
     # build a dataframe with each column being a unique category,id couple
@@ -234,17 +222,10 @@ def correlation(maxSize):
     # create the correlation matrix
     corr = df.corr()
     # plot it
-    ax = sns.heatmap(
-        corr, 
-        vmin=-1, vmax=1, center=0,
-        cmap=sns.diverging_palette(20, 220, n=200),
-        square=True
-    )
-    ax.set_xticklabels(
-        ax.get_xticklabels(),
-        rotation=45,
-        horizontalalignment='right'
-    );
+    fig = go.Figure(data=go.Heatmap(x=corr.index.tolist(), y=corr.index.tolist(), z=corr, colorscale="RdBu"))
+    fig.update_layout(height=700)
+    fig.show()
+    return fig
 
 def activation_per_period(state_list, maxSize, period):
     """
@@ -268,13 +249,3 @@ def activation_per_period(state_list, maxSize, period):
         else:
             list_activation[1][i%period] = {state_list[1][i]: 1}
     return list_activation
-
-# f1 = action_to_list('ROLLINGSHUTTER',5, 10000)
-# f = frequence_activation_minute(f1, 5000, 1440)
-
-f2 = action_to_list('ROLLINGSHUTTER',25,10000)
-fullPeriodGraph(f2)
-list_to_graph(f2)
-
-# mean_time(f1[0], f1[1], 1)
-# print(correlation())

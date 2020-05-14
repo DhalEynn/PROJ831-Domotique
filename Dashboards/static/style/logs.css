@@ -1,0 +1,343 @@
+/* ---------------------- */
+/* ----- GLOBAL CSS ----- */
+/* ---------------------- */
+
+html {
+    font: 1em / 1.4 sans-serif;
+    font-family: 'Trebuchet MS',Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    color: #e6e6e6;
+    margin: 0;
+    padding: 0;
+    word-wrap: break-word;
+    min-height: 100%;
+    background-color: #181818;
+}
+
+body {
+    background-color: #181818;
+    font-size: 0.75rem;
+}
+
+body>div {
+    color: #e6e6e6;
+    background: #272727;
+    border-width: 1px;
+    border-style: solid;
+    border-top-color: #464646;
+    border-right-color: #4d4d4d;
+    border-bottom-color: #5a5a5a;
+    border-left-color: #4d4d4d;
+    border-radius: 6px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+.element {
+    background-color: #272727;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px 8px;
+    max-width: 100%
+}
+
+.goBackLink:link, .goBackLink:visited {
+    display: block;
+    float: left;
+    text-decoration: none;
+    background: linear-gradient(0deg, #1b2938, #24282b);
+    color: #28a1dd;
+    border-width: 1px;
+    border-style: solid;
+    border-top-color: #464646;
+    border-right-color: #4d4d4d;
+    border-bottom-color: #5a5a5a;
+    border-left-color: #4d4d4d;
+    border-radius: 4px;
+    padding: 5px 8px;
+    font-size: 0.6875rem;
+    white-space: nowrap
+}
+
+.goBackLink:hover, .goBackLink:active {
+    background: #203142;
+    text-decoration: none;
+    cursor: pointer
+}
+
+.title {
+    text-align: center;
+    display: block;
+}
+
+/* ---------------------- */
+/* ----- SECOND DIV ----- */
+/* ---------------------- */
+
+.select-item {
+    width: 100%;
+    padding: 0; 
+    border: 0;
+    background-color: white;
+}
+
+.select-all-item {
+    width: 100%;
+    padding: 0; 
+    margin:0;
+    border: 0;
+    background-color: grey;
+}
+
+.select-category {
+    width: 100%;
+    padding: 0; 
+    margin:0;
+    border: 0;
+    background-color: black;
+    color:white;
+
+}
+
+#form-all {
+    padding: 0; 
+    margin:0;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+
+
+table, th, td {
+    border: 1px solid black;
+}
+
+table th{
+    text-align: left;
+    background-color: black;
+    color: white;
+    padding: 8px;
+}
+
+#items {
+    width: 20%;
+    background-color: #272727;
+    color: white;
+    align-items: center;
+    max-width: 100%
+}
+
+#items td {
+    padding: 0px;
+    background-color: white;
+    color: black;
+}
+
+#items tr:last-of-type
+{
+    background-color: grey;
+}
+
+/* --------------------- */
+/* ----- THIRD DIV ----- */
+/* --------------------- */
+
+#tableauDesLogs {
+    /* Global div for the third div */
+    display: flex;
+    flex-wrap: wrap;
+    flex : 1 1 auto;
+    padding: 0px;
+}
+
+    /* Global div for the table of elements */
+    #events_wrapper {
+        display: inline-block;
+        flex : 1 1 auto;
+        background: linear-gradient(0deg, #1b2938, #24282b);
+        color: black;
+        border-width: 1px;
+        border-style: solid;
+        border-top-color: #464646;
+        border-right-color: #4d4d4d;
+        border-bottom-color: #5a5a5a;
+        border-left-color: #4d4d4d;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        border-radius: 4px;
+        padding: 5px 8px;
+        box-sizing: border-box
+    }
+
+    /* Table of elements */
+
+        /* Div for the table of elements */
+        #events {
+            display: block;
+            width: fit-content;
+            background: linear-gradient(0deg, #1b2938, #24282b);
+            color: black;
+            border-width: 1px;
+            border-style: solid;
+            border-top-color: #464646;
+            border-right-color: #4d4d4d;
+            border-bottom-color: #5a5a5a;
+            border-left-color: #4d4d4d;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            border-radius: 4px;
+            padding: 5px 8px;
+            box-sizing: border-box
+        }
+
+        #events td {
+            padding: 4px;
+        }
+
+        #events tr:nth-child(odd){
+            background-color: rgb(221, 221, 221);
+        }
+
+        #events tr:nth-child(even){
+            background-color: white;
+        }
+
+        #events tr:hover {
+            background-color: rgb(96, 114, 194);
+        }
+
+        /* Wrapper for the addons of the table */
+        #events_paginate,#events_info,#events_length,#events_filter {
+            display: block;
+            width: fit-content;
+            background: linear-gradient(0deg, #1b2938, #24282b);
+            color: #28a1dd;
+            border-width: 1px;
+            border-style: solid;
+            border-top-color: #464646;
+            border-right-color: #4d4d4d;
+            border-bottom-color: #5a5a5a;
+            border-left-color: #4d4d4d;
+            font-size: 0.6875rem;
+            white-space: nowrap;
+            border-radius: 4px;
+            padding: 5px 8px;
+            box-sizing: border-box
+        }
+
+        /* Page numbering */
+
+        /* Span for page numbering */
+        #events_paginate>span {
+            list-style: none;
+            margin: 0;
+            margin-left: 2px;
+            margin-right: 2px;
+            padding: 0;
+            display: inline-table
+        }
+
+        .paginate_button,.ellipsis {
+            display: table-cell;
+            background: linear-gradient(0deg, #1b2938, #24282b);
+            color: #28a1dd;
+            border-width: 1px;
+            border-style: solid;
+            border-top-color: #464646;
+            border-right-color: #4d4d4d;
+            border-bottom-color: #5a5a5a;
+            border-left-color: #4d4d4d;
+            border-radius: 4px;
+            padding: 5px 8px;
+            font-size: 0.6875rem;
+            white-space: nowrap
+        }
+
+        .paginate_button:hover,.paginate_button:active {
+            background: #203142;
+            text-decoration: none;
+            cursor: pointer
+        }
+
+        /* Class for the links of page numbering */
+        .paginate_button>a {
+            display: block;
+            padding: 5px 8px;
+            text-decoration: none;
+            color: inherit
+        }
+
+        /* Class current page */
+        .current {
+            background: #395b7c;
+            color: #e0e0e0;
+            border: 1px solid #416486;
+            cursor: pointer
+        }
+
+        .current:hover,.current:active {
+            background: #3e6386
+        }
+
+        /* Class for "previous" button */
+        #events_previous {
+            display: inline-block;
+            background: linear-gradient(0deg, #1b2938, #24282b);
+            color: #28a1dd;
+            border-width: 1px;
+            border-style: solid;
+            border-top-color: #464646;
+            border-right-color: #4d4d4d;
+            border-bottom-color: #5a5a5a;
+            border-left-color: #4d4d4d;
+            font-size: 0.6875rem;
+            white-space: nowrap;
+            border-radius: 4px;
+            padding: 5px 8px
+        }
+
+        /* Class for "next" button */
+        #events_next {
+            display: inline-block;
+            background: linear-gradient(0deg, #1b2938, #24282b);
+            color: #28a1dd;
+            border-width: 1px;
+            border-style: solid;
+            border-top-color: #464646;
+            border-right-color: #4d4d4d;
+            border-bottom-color: #5a5a5a;
+            border-left-color: #4d4d4d;
+            font-size: 0.6875rem;
+            white-space: nowrap;
+            border-radius: 4px;
+            padding: 5px 8px
+        }
+
+
+    /* Chart of the logs */
+
+    #logs_chart {
+        display: flex;
+        flex : 1 1 auto;
+        max-height: 500px;
+        width: fit-content;
+        background: linear-gradient(0deg, #1b2938, #24282b);
+        color: black;
+        border-width: 1px;
+        border-style: solid;
+        border-top-color: #464646;
+        border-right-color: #4d4d4d;
+        border-bottom-color: #5a5a5a;
+        border-left-color: #4d4d4d;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        border-radius: 4px;
+        padding: 5px 8px;
+    }
+    #logs_chart > div
+    {
+        margin : auto;
+    }

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>DOMO</title>
+        <link rel="stylesheet" type="text/css" href="static/style/analyses.css">
+        <link rel="icon" type="image/png" href="static/img/home.png">
+        <!--<meta http-equiv="refresh" content="10">-->
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    </head>
+    <body>
+        <div class="element title">
+			<a href="/" class="goBackLink">&#60;- Retour au menu</a>
+			<h2>Projet domotique - Analyses</h2>
+		</div>
+        <div class="element">
+			<table id="items">
+				<thead>
+					<tr>
+						{% for key, value in items.items() %}
+							<th>{{key}}</th>
+						{% endfor %}
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in range(nb_line) %}
+					<tr>
+						{% for key, value in items.items() %}
+							<td>
+								{% if value[i] %}
+									<form method='POST'><button type=submit name='item' value='{{key}} {{value[i]}}' class="select-item">{{value[i]}}</button></form>
+								{% endif %}	
+							</td>
+						{% endfor %}
+					</tr>
+					{% endfor %}
+					<tr>
+						<td colspan=4>
+							<form id="form-all" method='POST'><button type=submit name='item' value='all' class="select-all-item">Tout</button></form>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="element" id="charts">
+			<div id="graphLastObjectFreq">
+				<script>
+					var None = undefined,
+					graphLastFreq = {{plotLastFreq | safe}};
+
+					if (graphLastFreq==undefined)
+					{
+						var graphLastObjectFreqHTML = document.getElementById('graphLastObjectFreq');
+						graphLastObjectFreqHTML.style.display='None';
+					}
+					else
+					{
+						graphLastFreq['config']={displayModeBar: false};
+						Plotly.plot('graphLastObjectFreq', graphLastFreq);
+
+					}
+				</script>
+			</div>
+
+			<div id="graphPrediction">
+				<script>
+					var None = undefined,
+					graphPrediction= {{plotPredition | safe}};
+
+					if (graphLastFreq==undefined)
+					{
+						var graphPredictionHTML = document.getElementById('graphPrediction');
+						graphPredictionHTML.style.display='None';
+					}
+					else
+					{
+						graphPrediction['config']={displayModeBar: false};
+						Plotly.plot('graphPrediction', graphPrediction);
+
+					}
+				</script>
+			</div>
+			
+			<div id="graphFullPeriod">
+				<script>
+					var None = undefined,
+					graphFullPeriod= {{plotFullPeriod | safe}};
+
+					if (graphFullPeriod==undefined)
+					{
+						var graphFullPeriodHTML = document.getElementById('graphFullPeriod');
+						graphFullPeriodHTML.style.display='None';
+					}
+					else
+					{
+						graphFullPeriod['config']={displayModeBar: false};
+						Plotly.plot('graphFullPeriod', graphFullPeriod);
+
+					}
+				</script>
+			</div>
+
+			<div id="heatMap">
+				<script>
+					var None = undefined,
+					heatMap= {{plotHeatMap | safe}};
+
+					if (heatMap==undefined)
+					{
+						var heatMapHTML = document.getElementById('heatMap');
+						heatMapHTML.style.display='None';
+					}
+					else
+					{
+						heatMap['config']={displayModeBar: false};
+						Plotly.plot('heatMap', heatMap);
+
+					}
+				</script>
+			</div>
+		</div>
+		<script type=text/javascript src="../static/js/lib/jquery.js"></script>
+		<script type=text/javascript src="../static/js/logs.js"></script>
+    </body>
+</html>

@@ -14,16 +14,30 @@ Comme vous êtes nombreux, il faudra prévoir dans le projet, en plus de la gest
 
 La seule contrainte que vous ayez, sauf si le module en impose d'autres, est d'utiliser des langages/bibliothèques/applications fiables et pérennes.
 
+## Dependencies :
 
+* python 3.X (tested with python 3.7.4 with or without Anaconda 3)
+* python packages :
+  * Flask (https://flask.palletsprojects.com/en/1.1.x/installation/#installation)
+  * pymongo (https://pymongo.readthedocs.io/en/stable/installation.html)
+* MongoDB (https://www.mongodb.com/community)
 
 ## Instructions :
-Start web server:
+**To start the web server :**
+
+In a command terminal :
 
 1. Install Flask
 `pip install Flask`
 
-2. Add the application as env var:
-(Windows PowerShell): `$env:FLASK_APP = "Dashboard/application.py"
+2. cd to /DashBoards
 
-3. Run the server:
+3. Add the application as env var:
+  * (Windows PowerShell): `$env:FLASK_APP = "application.py"`
+  * (Windows CMD) : `set FLASK_APP=application.py`
+  * (Linux): `export FLASK_APP=application.py`
+
+3. cd To /Dashboards
+
+4. Run the server:
 `flask run`
