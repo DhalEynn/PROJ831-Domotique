@@ -8,6 +8,7 @@
   * pymongo (https://pymongo.readthedocs.io/en/stable/installation.html)
 * MongoDB (https://www.mongodb.com/community)
 
+
 ## Instructions :
 
 0. Create the file "env.py" like this:
@@ -18,6 +19,7 @@ os.environ['DB_PASSWORD'] = password
 os.environ['DB_USERNAME'] = username
 os.environ['DB_SERVER'] = ip
 ```
+
 
 **Input data program:**
 
@@ -35,16 +37,20 @@ os.environ['DB_SERVER'] = ip
 
 `pip install pymongo`
 
+
 2. Go in Dashboard folder:
 
 `cd Dashboards`
+
 
 3. Add the application as env var:
   * (Windows PowerShell): `$env:FLASK_APP = "application.py"`
   * (Windows CMD) : `set FLASK_APP=application.py`
   * (Linux): `export FLASK_APP=application.py`
 
+
 4. Run the server:
+
 `flask run`
 
 5. The web server is running on localhost:5000
