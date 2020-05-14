@@ -34,7 +34,7 @@ os.environ['COLLECTION_ANALYSIS'] = 'analysis'
 
 1. Put your input data file in "Files" folder (some example are in the repo)
 
-2. Edit #parameters section of main.py (filename and collection name of your database)
+2. Edit #parameters section of main.py (logs filename)
 
 3. Run main.py
 
