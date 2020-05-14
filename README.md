@@ -19,7 +19,7 @@ os.environ['DB_USERNAME'] =
 os.environ['DB_SERVER'] = 
 ```
 
-**Input data program:***
+**Input data program:**
 
 1. Put your input data file in "Files" folder (some example are in the repo)
 
