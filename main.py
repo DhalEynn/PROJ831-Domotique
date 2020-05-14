@@ -1,23 +1,30 @@
 import sys
 sys.path.append('../')
 
-import env
-import plotly
-import json
 import Filtering.filterData as filterData
 import Transfer.sendData as sendData
 import Transfer.getData as getData
 import Transfer.connectDB as connectDB
 import Analysis.generate as generate
-import Analysis.Analysis as analysis
+
+import os
+import env
+
+
+# Parameters
+logs_file = "Files/WOF3.log"
+logs_collection = os.getenv('COLLECTION_LOGS')
+analysis_collection = os.getenv('COLLECTION_ANALYSIS')
+
 
 # Send logs to DB
-logsDB = connectDB.connectToCollection('logs4')
-filtered_data = filterData.LineReadingFromFile('Files/WOF4.log')
+logsDB = connectDB.connectToCollection(logs_collection)
+filtered_data = filterData.LineReadingFromFile(logs_file)
 sendData.send_items(filtered_data, logsDB)
 
+
 # Send analysis to DB
-analysisDB = connectDB.connectToCollection('analysis')
+analysisDB = connectDB.connectToCollection(analysis_collection)
 items = generate.getAllItems()
 
 lastObjectFreq = generate.createGraphLastObjectFreq(items)

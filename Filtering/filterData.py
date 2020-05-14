@@ -7,7 +7,6 @@ def listToString(s):
     # return string   
     return str1  
 
-
 def LineReadingFromFile(inputFile):
     """
     Filtering and formatting the log file
@@ -27,7 +26,6 @@ def LineReadingFromFile(inputFile):
                 # Formate Lines
                 FormattedData.append(formattingData(filteredLine))
     return FormattedData
-    
 
 def filtering(UpperLine):
     """
@@ -42,7 +40,6 @@ def filtering(UpperLine):
             return filteredLine
     return ''
             
-
 def formattingData(filteredLine):
     """
     Formate the filtered line

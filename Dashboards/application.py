@@ -1,6 +1,7 @@
 import sys
 sys.path.append('../')
 
+import os
 import env
 import Transfer.connectDB as connectDB
 import Transfer.getData as getData
@@ -13,6 +14,8 @@ import plotly
 import plotly.graph_objs as go
 import json
 
+collection_logs = os.getenv('COLLECTION_LOGS')
+collection_analysis = os.getenv('COLLECTION_ANALYSIS')
 
 app = Flask(__name__)
 
@@ -22,7 +25,7 @@ def index():
 
 @app.route("/logs", methods=['GET', 'POST'])
 def logs():
-    logs = connectDB.connectToCollection("logs4")
+    logs = connectDB.connectToCollection(collection_logs)
 
     # items table
     categs = getData.getAllExistingCategories(logs)
@@ -95,8 +98,8 @@ def logs():
 
 @app.route("/analyses", methods=['GET', 'POST'])
 def analyse():
-    logs = connectDB.connectToCollection("logs4")
-    analysis = connectDB.connectToCollection("analysis")
+    logs = connectDB.connectToCollection(collection_logs)
+    analysis = connectDB.connectToCollection(collection_analysis)
 
     # items table
     categs = getData.getAllExistingCategories(logs)
@@ -128,6 +131,5 @@ def analyse():
 
             resFullPeriod = getData.getChart(analysis, 'fullPeriod', item[0], item[1])
             chartFullPeriod = resFullPeriod['jsondumps']
-            
 
     return render_template("analyses.html", items=items, nb_line=nb_line, plotLastFreq = chartLastFreq, plotPredition = chartPrediction, plotFullPeriod = chartFullPeriod,plotHeatMap = heatMap)
