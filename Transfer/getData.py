@@ -1,5 +1,6 @@
 import pymongo
-def getItem(logs, categ, Id,actions,limit=None,sort=False):
+
+def getItem(logs, categ, Id, actions, limit=None, sort=False):
     '''
         Obtenir tous les événements d'un item défini par une Catégorie, un ID et une liste d'action
         si limit est fixé retourne les limi premiers éléments
@@ -16,7 +17,7 @@ def getItem(logs, categ, Id,actions,limit=None,sort=False):
         results.append(log)
     return results
 
-def getDate(logs, period, t1, t2,actions,limit=None):
+def getDate(logs, period, t1, t2, actions, limit=None):
     '''
         Obtenir tous les événements dans un intervalle [t1, t2] et en fonction d'une liste d'actions
 
@@ -49,7 +50,7 @@ def getDate(logs, period, t1, t2,actions,limit=None):
             results.append(log)
         return results
         
-def getCategory(logs, categ,actions,limit=None,sort=False):
+def getCategory(logs, categ, actions, limit=None, sort=False):
     '''
         Obtenir tous les événements des items d'une Catégorie et en fonction d'une liste d'actions
     '''
@@ -65,7 +66,7 @@ def getCategory(logs, categ,actions,limit=None,sort=False):
         results.append(r)
     return results
 
-def getFunction(logs, funct,actions,limit=None,sort=False):
+def getFunction(logs, funct, actions, limit=None, sort=False):
     '''
         Obtenir tous les événements qui effectuent une Function et en fonction d'une liste d'actions
     '''
@@ -81,7 +82,7 @@ def getFunction(logs, funct,actions,limit=None,sort=False):
         results.append(r)
     return results
 
-def getCommand(logs, comm,actions,limit=None,sort=False):
+def getCommand(logs, comm, actions, limit=None, sort=False):
     '''
         Obtenir tous les événements qui effectuent une Commande et en fonction d'une liste d'actions
     '''
@@ -104,7 +105,7 @@ def getAllExistingCategories(collection):
     results = collection.distinct( "Category" )
     return results
 
-def getAllIdFromCategory(collection,categ):
+def getAllIdFromCategory(collection, categ):
     '''
         Obtenir toutes les Ids appartenant à une catégorie
     '''
@@ -118,7 +119,7 @@ def getAllExistingActions(collection):
     results = collection.distinct( "Action" )
     return results
 
-def getAll(collection,limit=None,sort=False):
+def getAll(collection, limit=None, sort=False):
     '''
         Obtenir tout d'une collection avec un tri sur Ending Date en decroissant
     '''
@@ -133,14 +134,14 @@ def getAll(collection,limit=None,sort=False):
 
 def getChart(analysis, chart_type, categ, Id):
     '''
-    
+        Obtenir un graphique
     '''
     req = analysis.find_one({"Category": categ, "Id" : Id,  "chart_type": chart_type})
     return req
 
 def getHeatMap(analysis, chart_type):
     '''
-    
+        Obtenir une heatmap
     '''
     req = analysis.find_one({"chart_type": chart_type})
     return req

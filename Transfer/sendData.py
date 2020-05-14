@@ -2,6 +2,10 @@ import time
 from datetime import timedelta
 
 def send_items(items, collection):
+	"""
+		Send items in the specified collection of the database. 
+		Show running time, and percentage of sent items.
+	"""
 	start_time = time.time()
 	print("There are %d items to send." % (len(items)))
 	size_percent = int(len(items) * 0.01)

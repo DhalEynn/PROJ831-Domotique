@@ -1,8 +1,9 @@
 import sys
 sys.path.append('../')
+import Analysis.Analysis as analysis
+
 from pandas import DataFrame
 import pandas as pd
-import Analysis.Analysis as analysis
 
 def prediction(time, list_state, duration):
     """
