@@ -46,21 +46,23 @@
 					<script>
 						var None = undefined,
 						graphLastFreq = {{plotLastFreq | safe}};
-	
+						var graphLastObjectFreqHTML = document.getElementById('graphLastObjectFreqContainer');
 						if (graphLastFreq==undefined)
 						{
-							var graphLastObjectFreqHTML = document.getElementById('graphLastObjectFreqContainer');
+						
 							graphLastObjectFreqHTML.style.display='None';
 						}
 						else
 						{
 							graphLastFreq['config']={displayModeBar: false};
 							Plotly.plot('graphLastObjectFreq', graphLastFreq);
+							var title = document.createElement("title");
+							title.innerHTML += 'To Correct :';
+							graphLastObjectFreqHTML.prepend(title);
 	
 						}
 					</script>
 				</div>				
-				<title>To correct :</title>
 			</div>
 			
 			<div id="graphPredictionContainer">
@@ -68,21 +70,23 @@
 					<script>
 						var None = undefined,
 						graphPrediction= {{plotPredition | safe}};
-	
+						var graphPredictionHTML = document.getElementById('graphPredictionContainer');
 						if (graphLastFreq==undefined)
 						{
-							var graphPredictionHTML = document.getElementById('graphPredictionContainer');
+							
 							graphPredictionHTML.style.display='None';
 						}
 						else
 						{
 							graphPrediction['config']={displayModeBar: false};
 							Plotly.plot('graphPrediction', graphPrediction);
+							var title = document.createElement("title");
+							title.innerHTML += 'To Correct :';
+							graphPredictionHTML.prepend(title);
 	
 						}
 					</script>
 				</div>
-				<title>To correct :</title>
 			</div>
 			
 			<div id="graphFullPeriodContainer">
@@ -90,21 +94,23 @@
 					<script>
 						var None = undefined,
 						graphFullPeriod= {{plotFullPeriod | safe}};
-	
+						var graphFullPeriodHTML = document.getElementById('graphFullPeriodContainer');
 						if (graphFullPeriod==undefined)
 						{
-							var graphFullPeriodHTML = document.getElementById('graphFullPeriodContainer');
+							
 							graphFullPeriodHTML.style.display='None';
 						}
 						else
 						{
 							graphFullPeriod['config']={displayModeBar: false};
 							Plotly.plot('graphFullPeriod', graphFullPeriod);
+							var title = document.createElement("title");
+							title.innerHTML += 'To Correct :';
+							graphFullPeriodHTML.prepend(title);
 	
 						}
 					</script>
 				</div>
-				<title>To correct :</title>
 			</div>
 
 			<div id="heatMapContainer">
@@ -112,21 +118,24 @@
 					<script>
 						var None = undefined,
 						heatMap= {{plotHeatMap | safe}};
-	
+						var heatMapHTML = document.getElementById('heatMapContainer');
 						if (heatMap==undefined)
 						{
-							var heatMapHTML = document.getElementById('heatMapContainer');
+							
 							heatMapHTML.style.display='None';
 						}
 						else
 						{
 							heatMap['config']={displayModeBar: false};
 							Plotly.plot('heatMap', heatMap);
+							var title = document.createElement("title");
+							title.innerHTML += 'Correlation between all the objects';
+							heatMapHTML.prepend(title);
+	
 	
 						}
 					</script>
 				</div>
-				<title>Correlation between all the objects.</title>
 			</div>
 		</div>
 		<script type=text/javascript src="../static/js/lib/jquery.js"></script>
