@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import pymongo
 
 def getItem(logs, categ, Id, actions, limit=None, sort=False):

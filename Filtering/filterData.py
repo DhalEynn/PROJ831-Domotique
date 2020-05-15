@@ -1,3 +1,5 @@
+# coding: utf-8
+
 def listToString(s):  
     # initialize an empty string 
     str1 = ""  
