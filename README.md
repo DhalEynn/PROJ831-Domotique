@@ -45,7 +45,7 @@ os.environ['COLLECTION_ANALYSIS'] = 'analysis'
 
 2. Add the application as env var:
   * (Windows PowerShell): `$env:FLASK_APP = "application.py"`
-  * (Windows CMD) : `set FLASK_APP=application.py`
+  <!-- * (Windows CMD) : `set FLASK_APP=application.py` -->
   * (Linux): `export FLASK_APP=application.py`
 
 3. Run the server: `flask run`

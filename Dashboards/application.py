@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import sys
 sys.path.append('../')
 
@@ -131,5 +133,9 @@ def analyse():
 
             resFullPeriod = getData.getChart(analysis, 'fullPeriod', item[0], item[1])
             chartFullPeriod = resFullPeriod['jsondumps']
+
+    else:
+        resheatMap = getData.getHeatMap(analysis, 'correlation')
+        heatMap = resheatMap['jsondumps']
 
     return render_template("analyses.html", items=items, nb_line=nb_line, plotLastFreq = chartLastFreq, plotPredition = chartPrediction, plotFullPeriod = chartFullPeriod,plotHeatMap = heatMap)
