@@ -174,10 +174,11 @@ table th{
     border-radius: 4px;
     padding: 0px;
     resize: horizontal;
+    justify-content: center;
 }
 
 /* Global rule for all divs */
-#charts>div {
+#charts>div,#heatMapContainer>div, #graphFullPeriodContainer>div, #graphPredictionContainer>div, #graphLastObjectFreqContainer>div {  
     display: inline-block;
     background: linear-gradient(0deg, #1b2938, #24282b);
     color: black;

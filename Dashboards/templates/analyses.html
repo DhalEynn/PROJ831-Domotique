@@ -41,7 +41,7 @@
 			</table>
 		</div>
 		<div class="element" id="charts">
-			<div>
+			<div id="graphLastObjectFreqContainer">
 				<div id="graphLastObjectFreq">
 					<script>
 						var None = undefined,
@@ -49,7 +49,7 @@
 	
 						if (graphLastFreq==undefined)
 						{
-							var graphLastObjectFreqHTML = document.getElementById('graphLastObjectFreq');
+							var graphLastObjectFreqHTML = document.getElementById('graphLastObjectFreqContainer');
 							graphLastObjectFreqHTML.style.display='None';
 						}
 						else
@@ -63,7 +63,7 @@
 				<title>To correct :</title>
 			</div>
 			
-			<div>
+			<div id="graphPredictionContainer">
 				<div id="graphPrediction">
 					<script>
 						var None = undefined,
@@ -71,7 +71,7 @@
 	
 						if (graphLastFreq==undefined)
 						{
-							var graphPredictionHTML = document.getElementById('graphPrediction');
+							var graphPredictionHTML = document.getElementById('graphPredictionContainer');
 							graphPredictionHTML.style.display='None';
 						}
 						else
@@ -85,7 +85,7 @@
 				<title>To correct :</title>
 			</div>
 			
-			<div>
+			<div id="graphFullPeriodContainer">
 				<div id="graphFullPeriod">
 					<script>
 						var None = undefined,
@@ -93,7 +93,7 @@
 	
 						if (graphFullPeriod==undefined)
 						{
-							var graphFullPeriodHTML = document.getElementById('graphFullPeriod');
+							var graphFullPeriodHTML = document.getElementById('graphFullPeriodContainer');
 							graphFullPeriodHTML.style.display='None';
 						}
 						else
@@ -107,7 +107,7 @@
 				<title>To correct :</title>
 			</div>
 
-			<div>
+			<div id="heatMapContainer">
 				<div id="heatMap">
 					<script>
 						var None = undefined,
@@ -115,7 +115,7 @@
 	
 						if (heatMap==undefined)
 						{
-							var heatMapHTML = document.getElementById('heatMap');
+							var heatMapHTML = document.getElementById('heatMapContainer');
 							heatMapHTML.style.display='None';
 						}
 						else
