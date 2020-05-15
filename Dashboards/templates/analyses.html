@@ -34,7 +34,7 @@
 					{% endfor %}
 					<tr>
 						<td colspan=4>
-							<form id="form-all" method='POST'><button type=submit name='item' value='all' class="select-all-item">Tout</button></form>
+							<form id="form-all" method='POST'><button type=submit name='item' value='all' class="select-all-item">Heatmap</button></form>
 						</td>
 					</tr>
 				</tbody>
@@ -42,6 +42,7 @@
 		</div>
 		<div class="element" id="charts">
 			<div id="graphLastObjectFreq">
+				<title>To correct :</title>
 				<script>
 					var None = undefined,
 					graphLastFreq = {{plotLastFreq | safe}};
@@ -61,6 +62,7 @@
 			</div>
 
 			<div id="graphPrediction">
+				<title>To correct :</title>
 				<script>
 					var None = undefined,
 					graphPrediction= {{plotPredition | safe}};
@@ -80,6 +82,7 @@
 			</div>
 			
 			<div id="graphFullPeriod">
+				<title>To correct :</title>
 				<script>
 					var None = undefined,
 					graphFullPeriod= {{plotFullPeriod | safe}};
@@ -99,6 +102,7 @@
 			</div>
 
 			<div id="heatMap">
+				<title>Correlation between all the objects :</title>
 				<script>
 					var None = undefined,
 					heatMap= {{plotHeatMap | safe}};
