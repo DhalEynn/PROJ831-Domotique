@@ -67,8 +67,9 @@ def graphLastObjectFreq(dict_frequency, nb_actions):
             list_objet_frequency += [nb_action/nb_actions]
     fig = px.bar(x=list_object, y=list_objet_frequency)
     fig.update_layout(
+        yaxis=dict(tickformat=".00%"),
         xaxis_title="State",
-        yaxis_title="Time",
+        yaxis_title="Activation",
         font=dict(
             family="Courier New, monospace",
             size=16,
@@ -191,24 +192,26 @@ def fullPeriodGraph(state_list):
     color1 = 'green'
     color2 = 'red'
 
-    trace1 = go.Scatter(
+    trace1 = go.Bar(
         x = on.index,
         y = on.values,
-        name='on',
-        line = dict(
-            color = color1
-        )
+        name='on period',
+
     )
-    trace2 = go.Scatter(
+    trace2 = go.Bar(
         x= off.index,
         y =off.values,
-        name='off',
-        line = dict(
-            color = color2
-        )
+        name='off period',
+
     )
     data = [trace1, trace2]
+
     fig = go.Figure(data=data)
+    fig.update_layout(
+        yaxis_title ="Length",
+        xaxis_title ="Period n°",
+        barmode='group'
+        )
     fig.show()
 
 
@@ -272,9 +275,9 @@ def activation_per_period(state_list, maxSize, period):
 # f1 = action_to_list('ROLLINGSHUTTER',5, 10000)
 # f = frequence_activation_minute(f1, 5000, 1440)
 
-f2 = action_to_list('ROLLINGSHUTTER',25,10000)
-fullPeriodGraph(f2)
-list_to_graph(f2)
+# f2 = action_to_list('ROLLINGSHUTTER',25,10000)
+# fullPeriodGraph(f2)
+# list_to_graph(f2)
 
 # mean_time(f1[0], f1[1], 1)
 # print(correlation())
