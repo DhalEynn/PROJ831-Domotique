@@ -48,7 +48,6 @@ def lastObjectFreq(category,object_id, time):
                     dico_frequency[action_category][action_id][action_command] = 1
 
     return(dico_frequency , nb_actions)
-
 def graphLastObjectFreq(dict_frequency, nb_actions):
     """
     create the barchart for our lastObjectFreq function
@@ -66,8 +65,9 @@ def graphLastObjectFreq(dict_frequency, nb_actions):
             list_objet_frequency += [nb_action/nb_actions]
     fig = px.bar(x=list_object, y=list_objet_frequency)
     fig.update_layout(
+        yaxis=dict(tickformat=".00%"),
         xaxis_title="State",
-        yaxis_title="Time",
+        yaxis_title="Activation",
         font=dict(
             family="Courier New, monospace",
             size=16,
@@ -180,27 +180,29 @@ def fullPeriodGraph(state_list):
                 offPeriod+=1
     on = pd.Series(onPeriodList)
     off = pd.Series(offPeriodList)
-    color1 = 'green'
-    color2 = 'red'
 
-    trace1 = go.Scatter(
+    trace1 = go.Bar(
         x = on.index,
         y = on.values,
-        name='on',
-        line = dict(
-            color = color1
-        )
+        marker_color = 'green',
+        name='on period',
+
     )
-    trace2 = go.Scatter(
+    trace2 = go.Bar(
         x= off.index,
         y =off.values,
-        name='off',
-        line = dict(
-            color = color2
-        )
+        marker_color = 'red',
+        name='off period',
+
     )
     data = [trace1, trace2]
+
     fig = go.Figure(data=data)
+    fig.update_layout(
+        yaxis_title ="Length",
+        xaxis_title ="Period n°",
+        barmode='group'
+        )
     fig.show()
     return fig
 
