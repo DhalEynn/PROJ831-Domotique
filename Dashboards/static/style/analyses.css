@@ -19,6 +19,18 @@ body {
     font-size: 0.75rem;
 }
 
+title {
+    display: block;
+    color: #28a1dd;
+    text-align: center;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
 body>div {
     color: #e6e6e6;
     background: #272727;

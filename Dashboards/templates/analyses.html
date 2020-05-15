@@ -41,84 +41,92 @@
 			</table>
 		</div>
 		<div class="element" id="charts">
-			<div id="graphLastObjectFreq">
+			<div>
+				<div id="graphLastObjectFreq">
+					<script>
+						var None = undefined,
+						graphLastFreq = {{plotLastFreq | safe}};
+	
+						if (graphLastFreq==undefined)
+						{
+							var graphLastObjectFreqHTML = document.getElementById('graphLastObjectFreq');
+							graphLastObjectFreqHTML.style.display='None';
+						}
+						else
+						{
+							graphLastFreq['config']={displayModeBar: false};
+							Plotly.plot('graphLastObjectFreq', graphLastFreq);
+	
+						}
+					</script>
+				</div>				
 				<title>To correct :</title>
-				<script>
-					var None = undefined,
-					graphLastFreq = {{plotLastFreq | safe}};
-
-					if (graphLastFreq==undefined)
-					{
-						var graphLastObjectFreqHTML = document.getElementById('graphLastObjectFreq');
-						graphLastObjectFreqHTML.style.display='None';
-					}
-					else
-					{
-						graphLastFreq['config']={displayModeBar: false};
-						Plotly.plot('graphLastObjectFreq', graphLastFreq);
-
-					}
-				</script>
-			</div>
-
-			<div id="graphPrediction">
-				<title>To correct :</title>
-				<script>
-					var None = undefined,
-					graphPrediction= {{plotPredition | safe}};
-
-					if (graphLastFreq==undefined)
-					{
-						var graphPredictionHTML = document.getElementById('graphPrediction');
-						graphPredictionHTML.style.display='None';
-					}
-					else
-					{
-						graphPrediction['config']={displayModeBar: false};
-						Plotly.plot('graphPrediction', graphPrediction);
-
-					}
-				</script>
 			</div>
 			
-			<div id="graphFullPeriod">
+			<div>
+				<div id="graphPrediction">
+					<script>
+						var None = undefined,
+						graphPrediction= {{plotPredition | safe}};
+	
+						if (graphLastFreq==undefined)
+						{
+							var graphPredictionHTML = document.getElementById('graphPrediction');
+							graphPredictionHTML.style.display='None';
+						}
+						else
+						{
+							graphPrediction['config']={displayModeBar: false};
+							Plotly.plot('graphPrediction', graphPrediction);
+	
+						}
+					</script>
+				</div>
 				<title>To correct :</title>
-				<script>
-					var None = undefined,
-					graphFullPeriod= {{plotFullPeriod | safe}};
-
-					if (graphFullPeriod==undefined)
-					{
-						var graphFullPeriodHTML = document.getElementById('graphFullPeriod');
-						graphFullPeriodHTML.style.display='None';
-					}
-					else
-					{
-						graphFullPeriod['config']={displayModeBar: false};
-						Plotly.plot('graphFullPeriod', graphFullPeriod);
-
-					}
-				</script>
+			</div>
+			
+			<div>
+				<div id="graphFullPeriod">
+					<script>
+						var None = undefined,
+						graphFullPeriod= {{plotFullPeriod | safe}};
+	
+						if (graphFullPeriod==undefined)
+						{
+							var graphFullPeriodHTML = document.getElementById('graphFullPeriod');
+							graphFullPeriodHTML.style.display='None';
+						}
+						else
+						{
+							graphFullPeriod['config']={displayModeBar: false};
+							Plotly.plot('graphFullPeriod', graphFullPeriod);
+	
+						}
+					</script>
+				</div>
+				<title>To correct :</title>
 			</div>
 
-			<div id="heatMap">
-				<title>Correlation between all the objects :</title>
-				<script>
-					var None = undefined,
-					heatMap= {{plotHeatMap | safe}};
-
-					if (heatMap==undefined)
-					{
-						var heatMapHTML = document.getElementById('heatMap');
-						heatMapHTML.style.display='None';
-					}
-					else
-					{
-						heatMap['config']={displayModeBar: false};
-						Plotly.plot('heatMap', heatMap);
-
-					}
-				</script>
+			<div>
+				<div id="heatMap">
+					<script>
+						var None = undefined,
+						heatMap= {{plotHeatMap | safe}};
+	
+						if (heatMap==undefined)
+						{
+							var heatMapHTML = document.getElementById('heatMap');
+							heatMapHTML.style.display='None';
+						}
+						else
+						{
+							heatMap['config']={displayModeBar: false};
+							Plotly.plot('heatMap', heatMap);
+	
+						}
+					</script>
+				</div>
+				<title>Correlation between all the objects.</title>
 			</div>
 		</div>
 		<script type=text/javascript src="../static/js/lib/jquery.js"></script>
